@@ -196,7 +196,7 @@ const Services = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          Our Adventure Services
+          Our Adventure Courses
         </motion.h2>
         <motion.p
           className="text-xl text-center text-gray-600 mb-16 max-w-3xl mx-auto"
