@@ -2,8 +2,10 @@
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import { useRef, useEffect, useState } from "react";
+import EnquiryForm from "../../components/EnquiryForm"; // Import the EnquiryForm component
 
 const Reviews = () => {
+  const [showBookingForm, setShowBookingForm] = useState(false);
   const reviews = [
     {
       id: 1,
@@ -11,7 +13,7 @@ const Reviews = () => {
       rating: 5,
       comment:
         "The Diwali Adventure Course was incredible! The instructors were knowledgeable and safety was always their priority. Made memories that will last a lifetime.",
-      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      course: "Diwali Adventure Course",
     },
     {
       id: 2,
@@ -19,7 +21,7 @@ const Reviews = () => {
       rating: 5,
       comment:
         "I attended the Rock Climbing course and it exceeded all my expectations. The facilities were great and the instructors really knew how to build confidence.",
-      avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+      course: "Basic Rock Climbing Course",
     },
     {
       id: 3,
@@ -27,7 +29,7 @@ const Reviews = () => {
       rating: 4,
       comment:
         "The Wilderness Survival course taught me skills I'll use for a lifetime. The trainers were patient and experienced. Highly recommend for adventure enthusiasts!",
-      avatar: "https://randomuser.me/api/portraits/men/22.jpg",
+      course: "Navigation & Wilderness Survival",
     },
     {
       id: 4,
@@ -35,7 +37,7 @@ const Reviews = () => {
       rating: 5,
       comment:
         "My winter adventure experience was magical! The team at Bhonsala made sure we were comfortable and safe while pushing our limits. Can't wait for the next course!",
-      avatar: "https://randomuser.me/api/portraits/women/65.jpg",
+      course: "Winter Adventure Course",
     },
     {
       id: 5,
@@ -43,7 +45,7 @@ const Reviews = () => {
       rating: 5,
       comment:
         "The kayaking course was absolutely fantastic! Professional instructors and well-maintained equipment made for an unforgettable experience.",
-      avatar: "https://randomuser.me/api/portraits/men/45.jpg",
+      course: "Rafting & Kayaking Course",
     },
     {
       id: 6,
@@ -51,7 +53,7 @@ const Reviews = () => {
       rating: 4,
       comment:
         "Great value for money! The winter adventure course pushed me out of my comfort zone in the best way possible. Would definitely recommend to friends.",
-      avatar: "https://randomuser.me/api/portraits/women/22.jpg",
+      course: "Winter Adventure Course",
     },
   ];
 
@@ -61,6 +63,10 @@ const Reviews = () => {
   useEffect(() => {
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, []);
+
+  const openBookingForm = () => {
+    setShowBookingForm(true);
+  };
 
   return (
     <section id="reviews" className="py-20 px-4 bg-gray-50">
@@ -102,14 +108,13 @@ const Reviews = () => {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="flex items-center mb-4">
-                  <img
-                    src={review.avatar}
-                    alt={review.name}
-                    className="w-12 h-12 rounded-full mr-4 object-cover"
-                  />
+                  <div className="w-12 h-12 rounded-full mr-4 bg-gradient-to-t from-[#61693b] to-[#f8af03] flex items-center justify-center text-white font-semibold text-lg">
+                    {review.name.charAt(0)}
+                  </div>
                   <div>
                     <h3 className="font-semibold">{review.name}</h3>
-                    <div className="flex text-[#61693b]">
+                    <p className="text-sm text-gray-500">{review.course}</p>
+                    <div className="flex text-[#61693b] mt-1">
                       {[...Array(review.rating)].map((_, i) => (
                         <FaStar key={i} />
                       ))}
@@ -130,13 +135,16 @@ const Reviews = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <button
-            className="bg-gradient-to-t from-[#61693b] to-[#f8af03] text-white font-semibold py-3 px-8 rounded-full transition-all duration-300"
-            onClick={() => document.getElementById("enquiry-form").showModal()}
+            className="bg-gradient-to-t from-[#61693b] to-[#f8af03] text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:shadow-lg"
+            onClick={openBookingForm}
           >
             Join Our Adventurers
           </button>
         </motion.div>
       </div>
+
+      {/* Booking Form Popup */}
+      <EnquiryForm isOpen={showBookingForm} setIsOpen={setShowBookingForm} />
     </section>
   );
 };

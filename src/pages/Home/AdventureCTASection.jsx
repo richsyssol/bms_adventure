@@ -324,6 +324,13 @@ const AdventureCTASection = () => {
                         {adventure.title}
                       </h3>
                       <button
+                        onClick={() => openBookingForm(adventure)}
+                        className="bg-[#f8af03] text-white py-2 px-6 rounded-md hover:bg-[#e09e03] transition-colors duration-300 flex items-center justify-center"
+                      >
+                        <FaMapMarkerAlt className="mr-2" />
+                        Book Now
+                      </button>
+                      <button
                         onClick={closeModal}
                         className="text-gray-500 hover:text-gray-700"
                       >

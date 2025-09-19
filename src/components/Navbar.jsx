@@ -20,7 +20,6 @@ const Navbar = () => {
     { name: "Home", href: "#home" },
     { name: "Why Choose Us", href: "#why-us" },
     { name: "Services", href: "#services" },
-    { name: "Schedule", href: "#schedule" },
     { name: "Reviews", href: "#reviews" },
   ];
 

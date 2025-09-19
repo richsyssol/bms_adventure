@@ -1,16 +1,21 @@
 // components/HeroSection.jsx
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import EnquiryForm from "../../components/EnquiryForm"; // Import the EnquiryForm component
+
+import adventure3 from "../../assets/Himalayan Trek.jpg";
+import adventure4 from "../../assets/IMG_0559.JPG";
+import snowTrek2 from "../../assets/IMG_4163.JPG";
 
 const HeroSection = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [showBookingForm, setShowBookingForm] = useState(false);
 
-  const images = [
-    "https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    "https://images.unsplash.com/photo-1541417904950-b855846fe074?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2041&q=80",
-    "https://images.unsplash.com/photo-1581591524421-d536a2bcee21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
-    "https://images.unsplash.com/photo-1504870712357-65ea720d6078?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80",
-  ];
+  const images = [adventure3, adventure4, snowTrek2];
+
+  const openBookingForm = () => {
+    setShowBookingForm(true);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,7 +34,7 @@ const HeroSection = () => {
         <div
           key={index}
           className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
-            index === currentImage ? "opacity-100" : "opacity-0"
+            index === currentImage ? "opacity-90" : "opacity-0"
           }`}
           style={{ backgroundImage: `url(${image})` }}
         />
@@ -64,10 +69,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              setIsOpen(false); // Close mobile menu if needed
-              window.openAdventureEnquiryForm(); // Open the form
-            }}
+            onClick={openBookingForm}
           >
             Book Your Adventure
           </motion.button>
@@ -100,21 +102,8 @@ const HeroSection = () => {
         ))}
       </div>
 
-      {/* Scroll indicator */}
-      {/* <motion.div
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-      >
-        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-          <motion.div
-            className="w-1 h-3 bg-white rounded-full mt-2"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
-        </div>
-      </motion.div> */}
+      {/* Booking Form Popup */}
+      <EnquiryForm isOpen={showBookingForm} setIsOpen={setShowBookingForm} />
     </section>
   );
 };

@@ -17,11 +17,22 @@ import {
   FaClipboardCheck,
   FaRegCheckCircle,
   FaInfoCircle,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
+import EnquiryForm from "../../components/EnquiryForm"; // Import the EnquiryForm component
+
+// Import images for each service
+import diwaliAdventure from "../../assets/AdventureCourse.jpeg";
+import navigationWilderness from "../../assets/Wilderness.jpg";
+import raftingKayaking from "../../assets/Rafting.jpeg";
+import winterAdventure from "../../assets/Trekking.jpeg";
+import rockClimbing from "../../assets/RockClimbing.jpeg";
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [selectedAdventure, setSelectedAdventure] = useState(null);
 
   const services = [
     {
@@ -34,7 +45,7 @@ const Services = () => {
       age: "12 to 18 Yrs",
       days: 4,
       batch: "Mix Batch",
-      fees: "₹4600/-",
+      image: diwaliAdventure,
     },
     {
       id: 2,
@@ -46,7 +57,7 @@ const Services = () => {
       age: "12yrs & Above",
       days: 4,
       batch: "Mix Batch",
-      fees: "₹4600/-",
+      image: navigationWilderness,
     },
     {
       id: 3,
@@ -58,7 +69,7 @@ const Services = () => {
       age: "12yrs & Above",
       days: 4,
       batch: "Mix Batch",
-      fees: "₹4600/-",
+      image: raftingKayaking,
     },
     {
       id: 4,
@@ -70,7 +81,7 @@ const Services = () => {
       age: "12 to 18 Yrs",
       days: 4,
       batch: "Mix Batch",
-      fees: "₹4600/-",
+      image: winterAdventure,
     },
     {
       id: 5,
@@ -82,7 +93,7 @@ const Services = () => {
       age: "12yrs & above",
       days: 4,
       batch: "Mix Batch",
-      fees: "₹4600/-",
+      image: rockClimbing,
     },
   ];
 
@@ -135,7 +146,6 @@ const Services = () => {
       "3/4 Bermuda for water sports.",
       "One bed Sheet, Chaddar / Blanket (winter), and Pillow.",
     ],
-    contact: "For more information please contact - 9096970836, 9403413896",
   };
 
   const openModal = (service) => {
@@ -148,6 +158,11 @@ const Services = () => {
     setIsModalOpen(false);
     setTimeout(() => setSelectedService(null), 300);
     document.body.style.overflow = "unset";
+  };
+
+  const openBookingForm = (service) => {
+    setSelectedAdventure(service);
+    setShowBookingForm(true);
   };
 
   const containerVariants = {
@@ -222,7 +237,7 @@ const Services = () => {
                   index % 2 === 0 ? "md:pr-12" : "md:pl-12"
                 }`}
               >
-                <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+                <div className="bg-gray-50 p-6 rounded-lg duration-300 border border-gray-100">
                   <div className="flex justify-center mb-4">{service.icon}</div>
                   <h3 className="text-xl font-semibold mb-2 text-center">
                     {service.title}
@@ -240,19 +255,40 @@ const Services = () => {
                       <FaUserFriends className="mr-2" />
                       <span className="font-semibold">Age:</span> {service.age}
                     </p>
-                    <p className="text-gray-700 flex items-center mt-2">
-                      <FaMoneyBillWave className="mr-2" />
-                      <span className="font-semibold">Fees:</span>{" "}
-                      {service.fees}
-                    </p>
                   </div>
-                  <button
-                    onClick={() => openModal(service)}
-                    className="w-full bg-[#61693b] text-white py-2 rounded-md hover:bg-[#4e5530] transition-colors duration-300 flex items-center justify-center"
-                  >
-                    <FaInfoCircle className="mr-2" />
-                    View Details
-                  </button>
+
+                  {/* Buttons Container */}
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <button
+                      onClick={() => openModal(service)}
+                      className="bg-[#61693b] text-white py-2 rounded-md hover:bg-[#4e5530] transition-colors duration-300 flex items-center justify-center flex-1"
+                    >
+                      <FaInfoCircle className="mr-2" />
+                      View Details
+                    </button>
+                    <button
+                      onClick={() => openBookingForm(service)}
+                      className="bg-[#f8af03] text-white py-2 rounded-md hover:bg-[#e09e03] transition-colors duration-300 flex items-center justify-center flex-1"
+                    >
+                      <FaMapMarkerAlt className="mr-2" />
+                      Book Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Image on the blank side */}
+              <div
+                className={`md:w-1/2 ${
+                  index % 2 === 0 ? "md:pr-12" : "md:pl-12"
+                } mt-6 md:mt-0`}
+              >
+                <div className="h-full w-full rounded-lg overflow-hidden shadow-md">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-90 object-cover transition-transform duration-300 hover:scale-105"
+                  />
                 </div>
               </div>
             </motion.div>
@@ -319,16 +355,10 @@ const Services = () => {
               </ul>
             </div>
           </div>
-
-          <div className="mt-6 text-center">
-            <p className="text-gray-700 font-semibold">
-              {termsAndConditions.contact}
-            </p>
-          </div>
         </motion.div>
       </div>
 
-      {/* Modal Popup */}
+      {/* Modal Popup for Details */}
       <AnimatePresence>
         {isModalOpen && selectedService && (
           <motion.div
@@ -342,7 +372,7 @@ const Services = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="p-6">
@@ -350,18 +380,34 @@ const Services = () => {
                   <h3 className="text-2xl font-bold">
                     {selectedService.title}
                   </h3>
-                  <button
-                    onClick={closeModal}
-                    className="text-gray-500 hover:text-gray-700"
-                  >
-                    <FaTimes className="text-xl" />
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => openBookingForm(selectedService)}
+                      className="bg-[#f8af03] text-white py-2 px-6 rounded-md hover:bg-[#e09e03] transition-colors duration-300 flex items-center"
+                    >
+                      <FaMapMarkerAlt className="mr-2" />
+                      Book Now
+                    </button>
+                    <button
+                      onClick={closeModal}
+                      className="text-gray-500 hover:text-gray-700"
+                    >
+                      <FaTimes className="text-xl" />
+                    </button>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <div className="flex justify-center mb-4">
                       {selectedService.icon}
+                    </div>
+                    <div className="mb-6 rounded-lg overflow-hidden">
+                      <img
+                        src={selectedService.image}
+                        alt={selectedService.title}
+                        className="w-full h-48 object-cover"
+                      />
                     </div>
                     <p className="text-gray-600 mb-6">
                       {selectedService.description}
@@ -387,12 +433,6 @@ const Services = () => {
                         <p className="flex justify-between">
                           <span className="font-medium">Batch Type:</span>
                           <span>{selectedService.batch}</span>
-                        </p>
-                        <p className="flex justify-between">
-                          <span className="font-medium">Fees:</span>
-                          <span className="font-semibold">
-                            {selectedService.fees}
-                          </span>
                         </p>
                       </div>
                     </div>
@@ -430,7 +470,14 @@ const Services = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 flex justify-center">
+                <div className="mt-6 flex justify-center gap-4">
+                  <button
+                    onClick={() => openBookingForm(selectedService)}
+                    className="bg-[#f8af03] text-white py-2 px-6 rounded-md hover:bg-[#e09e03] transition-colors duration-300 flex items-center"
+                  >
+                    <FaMapMarkerAlt className="mr-2" />
+                    Book Now
+                  </button>
                   <button
                     onClick={closeModal}
                     className="bg-[#61693b] text-white py-2 px-6 rounded-md hover:bg-[#4e5530] transition-colors duration-300"
@@ -443,6 +490,13 @@ const Services = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Booking Form Popup */}
+      <EnquiryForm
+        isOpen={showBookingForm}
+        setIsOpen={setShowBookingForm}
+        selectedCourse={selectedAdventure ? selectedAdventure.title : ""}
+      />
     </section>
   );
 };

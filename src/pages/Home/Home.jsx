@@ -6,6 +6,7 @@ import Services from "./Services";
 import Reviews from "./Reviews";
 import EnquiryForm from "../../components/EnquiryForm";
 import AdventureCTASection from "./AdventureCTASection";
+import FinalCTA from "./FinalCTA";
 
 function Home() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -25,8 +26,10 @@ function Home() {
       <HeroSection />
       <AdventureCTASection />
       <Services />
+      <FinalCTA />
       <WhyChooseUs />
       <Reviews />
+      <FinalCTA />
       <EnquiryForm isOpen={isFormOpen} setIsOpen={setIsFormOpen} />
     </div>
   );
