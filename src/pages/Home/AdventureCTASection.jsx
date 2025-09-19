@@ -13,19 +13,18 @@ import {
 import EnquiryForm from "../../components/EnquiryForm"; // Import the EnquiryForm component
 
 // Import your images (replace with actual image paths)
-import adventure1 from "../../assets/Himalayan Trek.jpg";
-import adventure2 from "../../assets/Himalayan Trek.jpg";
+import adventure2 from "../../assets/Himalayin.JPG";
 import adventure3 from "../../assets/Himalayan Trek.jpg";
 import adventure4 from "../../assets/IMG_0559.JPG";
 import snowTrek1 from "../../assets/IMG_0559.JPG";
 import snowTrek2 from "../../assets/IMG_4163.JPG";
 import snowTrek3 from "../../assets/IMG_0559.JPG";
-import dandeli1 from "../../assets/IMG_0559.JPG";
-import dandeli2 from "../../assets/Himalayan Trek.jpg";
-import dandeli3 from "../../assets/IMG_4163.JPG";
-import manali1 from "../../assets/IMG_0559.JPG";
-import manali2 from "../../assets/IMG_4163.JPG";
-import manali3 from "../../assets/IMG_0559.JPG";
+import dandeli1 from "../../assets/JUNGLE.jpg";
+import dandeli2 from "../../assets/JUNGLE1.jpg";
+import dandeli3 from "../../assets/JUNGLE2.jpg";
+import manali1 from "../../assets/HimalayanTrek.jpg";
+import manali2 from "../../assets/HimalayanTrek1.jpg";
+import manali3 from "../../assets/HimalayanTrek5.jpg";
 
 const AdventureCTASection = () => {
   const [activeModal, setActiveModal] = useState(null);

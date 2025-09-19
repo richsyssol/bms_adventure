@@ -22,10 +22,10 @@ import {
 import EnquiryForm from "../../components/EnquiryForm"; // Import the EnquiryForm component
 
 // Import images for each service
-import diwaliAdventure from "../../assets/AdventureCourse.jpeg";
-import navigationWilderness from "../../assets/Wilderness.jpg";
+import diwaliAdventure from "../../assets/diwali.jpeg";
+import navigationWilderness from "../../assets/Wilderness.jpeg";
 import raftingKayaking from "../../assets/Rafting.jpeg";
-import winterAdventure from "../../assets/Trekking.jpeg";
+import winterAdventure from "../../assets/AdventureCourse.jpeg";
 import rockClimbing from "../../assets/RockClimbing.jpeg";
 
 const Services = () => {
