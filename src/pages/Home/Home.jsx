@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import HeroSection from "./HeroSection";
 import WhyChooseUs from "./AboutSection";
 import Services from "./Services";
-import CourseSchedule from "./CourseSchedule";
 import Reviews from "./Reviews";
 import EnquiryForm from "../../components/EnquiryForm";
+import AdventureCTASection from "./AdventureCTASection";
 
 function Home() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -23,9 +23,9 @@ function Home() {
   return (
     <div className="App">
       <HeroSection />
-      <WhyChooseUs />
+      <AdventureCTASection />
       <Services />
-      <CourseSchedule />
+      <WhyChooseUs />
       <Reviews />
       <EnquiryForm isOpen={isFormOpen} setIsOpen={setIsFormOpen} />
     </div>

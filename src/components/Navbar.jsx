@@ -36,7 +36,7 @@ const Navbar = () => {
       transition={{ duration: 0.6 }}
     >
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col justify-between items-center">
           <motion.div
             className="text-2xl font-bold"
             whileHover={{ scale: 1.05 }}
@@ -50,7 +50,7 @@ const Navbar = () => {
               <motion.a
                 key={index}
                 href={item.href}
-                className={`hover:text-orange-500 transition-colors duration-300 ${
+                className={`hover:text-orange-500 transition-colors py-2 duration-300 ${
                   scrolled ? "text-black" : "text-white"
                 }`}
                 whileHover={{ y: -2 }}
@@ -59,21 +59,20 @@ const Navbar = () => {
                 {item.name}
               </motion.a>
             ))}
+            {/* CTA Button */}
+            <motion.button
+              className="bg-gradient-to-t from-[#61693b] to-[#f8af03] text-white font-semibold py-2 px-8 rounded-full transition-all duration-300"
+              onClick={() => {
+                setIsOpen(false); // Close mobile menu if needed
+                window.openAdventureEnquiryForm(); // Open the form
+              }}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
+              Enquire Now
+            </motion.button>
           </div>
-
-          {/* CTA Button */}
-          <motion.button
-            className="bg-gradient-to-t from-[#61693b] to-[#f8af03] text-white font-semibold py-2 px-4 rounded-full transition-all duration-300 mt-4"
-            onClick={() => {
-              setIsOpen(false); // Close mobile menu if needed
-              window.openAdventureEnquiryForm(); // Open the form
-            }}
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.6 }}
-          >
-            Enquire Now
-          </motion.button>
 
           {/* Mobile Menu Button */}
           <button
