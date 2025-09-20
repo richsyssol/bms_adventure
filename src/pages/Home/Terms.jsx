@@ -128,7 +128,7 @@ const Terms = () => {
       <div className="container mx-auto">
         {/* Terms and Conditions Section */}
         <motion.div
-          className="bg-orange-50 p-8 rounded-lg border border-orange-100"
+          className=" bg-orange-50 p-8 rounded-lg border border-orange-100"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

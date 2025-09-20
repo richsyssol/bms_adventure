@@ -342,7 +342,7 @@ const Services = () => {
                       </ul>
                     </div>
 
-                    <div className="bg-gray-100 p-4 rounded-lg">
+                    {/* <div className="bg-gray-100 p-4 rounded-lg">
                       <h4 className="text-lg font-semibold mb-3">
                         Required Equipment
                       </h4>
@@ -353,7 +353,7 @@ const Services = () => {
                             <li key={index}>{item}</li>
                           ))}
                       </ul>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 

@@ -21,7 +21,7 @@ const Logo = () => {
           <img
             src={logo1}
             alt="Adventure Club Logo"
-            className="w-28 h-10 md:w-80 md:h-30 object-contain"
+            className="w-32 h-12 md:w-96 md:h-40 object-contain"
           />
           <img
             src={logo}
