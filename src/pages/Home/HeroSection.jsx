@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import EnquiryForm from "../../components/EnquiryForm"; // Import the EnquiryForm component
 
-import adventure3 from "../../assets/Himalayan Trek.jpg";
-import adventure4 from "../../assets/IMG_0559.JPG";
-import snowTrek2 from "../../assets/IMG_4163.JPG";
+import adventure3 from "../../assets/IMG-20240614-WA0228.jpg";
+import adventure4 from "../../assets/IMG-20250102-WA0512.jpg";
+import snowTrek2 from "../../assets/IMG_20250331_062512096.jpg";
 
 const HeroSection = () => {
   const [currentImage, setCurrentImage] = useState(0);

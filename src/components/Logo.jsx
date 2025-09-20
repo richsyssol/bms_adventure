@@ -17,7 +17,7 @@ const Logo = () => {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
-        <div className="flex flex-col justify-around items-center md:flex-row gap-2 md:gap-4">
+        <div className="flex flex-row justify-around items-center md:flex-row gap-2 md:gap-4">
           <img
             src={logo1}
             alt="Adventure Club Logo"

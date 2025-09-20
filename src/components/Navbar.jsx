@@ -35,7 +35,7 @@ const Navbar = () => {
       transition={{ duration: 0.6 }}
     >
       <div className="container mx-auto px-4">
-        <div className="flex flex-col justify-between items-center">
+        <div className="flex flex-col justify-between md:items-center">
           <motion.div
             className="text-2xl font-bold"
             whileHover={{ scale: 1.05 }}
@@ -75,7 +75,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className={`md:hidden text-2xl ${
+            className={`md:hidden text-2xl pt-4 ${
               scrolled ? "text-black" : "text-white"
             }`}
             onClick={() => setIsOpen(!isOpen)}

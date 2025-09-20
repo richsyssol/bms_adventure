@@ -14,7 +14,7 @@ import EnquiryForm from "../../components/EnquiryForm"; // Import the EnquiryFor
 
 // Import your images (replace with actual image paths)
 import adventure2 from "../../assets/Himalayin.JPG";
-import adventure3 from "../../assets/Himalayan Trek.jpg";
+import adventure3 from "../../assets/HimalayanTrek6.jpg";
 import adventure4 from "../../assets/IMG_0559.JPG";
 import snowTrek1 from "../../assets/IMG_0559.JPG";
 import snowTrek2 from "../../assets/IMG_4163.JPG";
@@ -36,7 +36,7 @@ const AdventureCTASection = () => {
       id: 1,
       title: "WINTER NATURE STUDY & HIMALAYAN TREK",
       subtitle: "Snow Trek Adventure",
-      images: [snowTrek1, snowTrek2, snowTrek3, adventure4],
+      images: [adventure3, adventure4, adventure2],
       duration: "09 Nights / 10 Days",
       date: "21st Dec to 30th Dec 2025",
       age: "12 years & above",
