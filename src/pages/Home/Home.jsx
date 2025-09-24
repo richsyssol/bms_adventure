@@ -8,6 +8,7 @@ import EnquiryForm from "../../components/EnquiryForm";
 import AdventureCTASection from "./AdventureCTASection";
 import FinalCTA from "./FinalCTA";
 import Terms from "./Terms";
+import AdventureFestival from "./AdventureFestival";
 
 function Home() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -25,6 +26,7 @@ function Home() {
   return (
     <div className="App">
       <HeroSection />
+      <AdventureFestival />
       <Services />
       <AdventureCTASection />
       <Terms />
