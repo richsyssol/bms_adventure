@@ -10,7 +10,7 @@ import {
   FaTree,
   FaMountain,
 } from "react-icons/fa";
-import EnquiryForm from "../../components/EnquiryForm"; // Import the EnquiryForm component
+import EnquiryForm from "../../components/Trekform"; // Import the EnquiryForm component
 
 // Import your images (replace with actual image paths)
 import adventure2 from "../../assets/Himalayin.JPG";

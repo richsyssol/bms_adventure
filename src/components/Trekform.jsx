@@ -16,24 +16,16 @@ import {
 
 const courses = [
   {
-    name: "Diwali Adventure Course",
-    paymentLink: "https://rzp.io/rzp/tMpirsQS", // Replace with actual link
+    name: "WINTER NATURE STUDY & HIMALAYAN TREK",
+    paymentLink: "https://rzp.io/rzp/6I3ktiL", // Replace with actual link
   },
   {
-    name: "Navigation & Wilderness Survival Course",
-    paymentLink: "https://rzp.io/rzp/Jtwh8XS", // Replace with actual link
+    name: "DANDELI EDUCATIONAL JUNGLE SAFARI",
+    paymentLink: "", // Replace with actual link
   },
   {
-    name: "Introductory Rafting & Kayaking Course",
-    paymentLink: "", // No payment link provided
-  },
-  {
-    name: "Winter Adventure Course",
-    paymentLink: "https://payment.example.com/winter", // Replace with actual link
-  },
-  {
-    name: "Basic Rock Climbing Course",
-    paymentLink: "", // No payment link provided
+    name: "WINTER NATURE STUDY & HIMALAYAN TREK MANALI",
+    paymentLink: "https://rzp.io/rzp/1nc2WXX", // No payment link provided
   },
 ];
 
@@ -118,7 +110,7 @@ function EnquiryForm({ isOpen, setIsOpen }) {
       formPayload.append("phone", formData.phone);
       formPayload.append("course", formData.course);
       formPayload.append("message", formData.message || "No message provided");
-      formPayload.append("source", "Adventure Course Enquiry");
+      formPayload.append("source", "Adventure Programs Enquiry");
 
       const response = await fetch(scriptURL, {
         method: "POST",
@@ -412,7 +404,7 @@ function EnquiryForm({ isOpen, setIsOpen }) {
                         className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700"
                       >
                         <BookOpen className="w-4 h-4 text-[#61693b]" />
-                        Select Adventure Course
+                        Select Adventure Programs
                       </label>
                       <div className="relative">
                         <select
@@ -425,7 +417,7 @@ function EnquiryForm({ isOpen, setIsOpen }) {
                           }`}
                           required
                         >
-                          <option value="">Choose an adventure course</option>
+                          <option value="">Choose an adventure Programs</option>
                           {courses.map((course) => (
                             <option key={course.name} value={course.name}>
                               {course.name}
