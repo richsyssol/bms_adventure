@@ -1,6 +1,7 @@
 // components/EnquiryForm.jsx
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   X,
   Mail,
@@ -10,7 +11,6 @@ import {
   BookOpen,
   MessageCircle,
   Send,
-  CheckCircle,
   AlertCircle,
 } from "lucide-react";
 
@@ -30,6 +30,7 @@ const courses = [
 ];
 
 function EnquiryForm({ isOpen, setIsOpen }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -40,9 +41,8 @@ function EnquiryForm({ isOpen, setIsOpen }) {
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
+  const [submitStatus, setSubmitStatus] = useState(null);
 
-  // Google Apps Script URL - replace with your actual URL
   const scriptURL =
     "https://script.google.com/macros/s/AKfycbyiOTFRRKXneOc6MLDS5rawIwA09bQlTRXjse3NE_3JeTvqF_0ITBWfCs6k2qHyxy0y/exec";
 
@@ -50,7 +50,6 @@ function EnquiryForm({ isOpen, setIsOpen }) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -86,7 +85,6 @@ function EnquiryForm({ isOpen, setIsOpen }) {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Function to get payment link for selected course
   const getPaymentLink = (courseName) => {
     const course = courses.find((c) => c.name === courseName);
     return course ? course.paymentLink : "";
@@ -110,7 +108,7 @@ function EnquiryForm({ isOpen, setIsOpen }) {
       formPayload.append("phone", formData.phone);
       formPayload.append("course", formData.course);
       formPayload.append("message", formData.message || "No message provided");
-      formPayload.append("source", "Adventure Programs Enquiry");
+      formPayload.append("source", "Adventure Course Enquiry");
 
       const response = await fetch(scriptURL, {
         method: "POST",
@@ -118,10 +116,20 @@ function EnquiryForm({ isOpen, setIsOpen }) {
       });
 
       if (response.ok) {
-        setSubmitStatus("success");
-
         // Get payment link for the selected course
         const paymentLink = getPaymentLink(formData.course);
+
+        // Prepare data for thank you page
+        const thankYouData = {
+          fullName: formData.fullName,
+          course: formData.course,
+          paymentLink: paymentLink,
+          hasPaymentLink: !!paymentLink,
+        };
+
+        console.log(
+          "Form submitted successfully, navigating to thank you page..."
+        );
 
         // Reset form
         setFormData({
@@ -132,29 +140,19 @@ function EnquiryForm({ isOpen, setIsOpen }) {
           message: "",
         });
 
-        if (paymentLink) {
-          // Immediately redirect to payment link in new tab
-          window.open(paymentLink, "_blank");
+        // Close modal first
+        setIsOpen(false);
 
-          // Close modal after 1 second
-          setTimeout(() => {
-            setIsOpen(false);
-            setSubmitStatus(null);
-          }, 1000);
-        } else {
-          // Close modal after 2 seconds if no payment link
-          setTimeout(() => {
-            setIsOpen(false);
-            setSubmitStatus(null);
-          }, 2000);
-        }
+        // Small delay to ensure modal is closed before navigation
+        setTimeout(() => {
+          navigate("/thankyou", { state: thankYouData });
+        }, 100);
       } else {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
       setSubmitStatus("error");
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -234,9 +232,7 @@ function EnquiryForm({ isOpen, setIsOpen }) {
                   transition={{ delay: 0.1 }}
                   className="text-2xl sm:text-3xl font-bold mb-2"
                 >
-                  {submitStatus === "success"
-                    ? "Request Submitted!"
-                    : "Start Your Adventure!"}
+                  Start Your Adventure!
                 </motion.h2>
                 <motion.p
                   initial={{ opacity: 0 }}
@@ -244,30 +240,13 @@ function EnquiryForm({ isOpen, setIsOpen }) {
                   transition={{ delay: 0.15 }}
                   className="text-sm sm:text-base"
                 >
-                  {submitStatus === "success"
-                    ? "Thank you for your enquiry!"
-                    : "Fill out the form and our adventure experts will contact you shortly"}
+                  Fill out the form and our adventure experts will contact you
+                  shortly
                 </motion.p>
               </div>
 
-              {/* Success Message */}
+              {/* Error Message */}
               <AnimatePresence>
-                {submitStatus === "success" && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="bg-green-50 p-4 border-l-4 border-green-400"
-                  >
-                    <div className="flex items-center">
-                      <CheckCircle className="w-5 h-5 text-green-400 mr-2" />
-                      <p className="text-green-700 text-sm">
-                        Your adventure request has been submitted successfully!
-                      </p>
-                    </div>
-                  </motion.div>
-                )}
-
                 {submitStatus === "error" && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
@@ -286,219 +265,211 @@ function EnquiryForm({ isOpen, setIsOpen }) {
                 )}
               </AnimatePresence>
 
-              {/* Form content - Only show if not in success state */}
-              {submitStatus !== "success" && (
-                <div className="p-6 sm:p-8">
-                  <form
-                    onSubmit={handleSubmit}
-                    className="space-y-4 sm:space-y-5"
+              {/* Form content */}
+              <div className="p-6 sm:p-8">
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-4 sm:space-y-5"
+                >
+                  {/* Form fields remain the same */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="space-y-1"
                   >
-                    {/* Full Name */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 }}
-                      className="space-y-1"
+                    <label
+                      htmlFor="fullName"
+                      className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700"
                     >
-                      <label
-                        htmlFor="fullName"
-                        className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700"
-                      >
-                        <User className="w-4 h-4 text-[#61693b]" />
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        id="fullName"
-                        name="fullName"
-                        value={formData.fullName}
-                        onChange={handleChange}
-                        className={`w-full px-4 py-2.5 text-sm sm:text-base border rounded-xl focus:ring-2 focus:ring-[#61693b]/50 focus:border-[#61693b] outline-none transition-all bg-white/80 hover:bg-white/90 ${
-                          errors.fullName ? "border-red-500" : "border-gray-200"
-                        }`}
-                        required
-                        placeholder="Enter your full name"
-                      />
-                      {errors.fullName && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.fullName}
-                        </p>
-                      )}
-                    </motion.div>
+                      <User className="w-4 h-4 text-[#61693b]" />
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      id="fullName"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-2.5 text-sm sm:text-base border rounded-xl focus:ring-2 focus:ring-[#61693b]/50 focus:border-[#61693b] outline-none transition-all bg-white/80 hover:bg-white/90 ${
+                        errors.fullName ? "border-red-500" : "border-gray-200"
+                      }`}
+                      required
+                      placeholder="Enter your full name"
+                    />
+                    {errors.fullName && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.fullName}
+                      </p>
+                    )}
+                  </motion.div>
 
-                    {/* Email */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.25 }}
-                      className="space-y-1"
-                    >
-                      <label
-                        htmlFor="email"
-                        className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700"
-                      >
-                        <Mail className="w-4 h-4 text-[#61693b]" />
-                        Email Address
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className={`w-full px-4 py-2.5 text-sm sm:text-base border rounded-xl focus:ring-2 focus:ring-[#61693b]/50 focus:border-[#61693b] outline-none transition-all bg-white/80 hover:bg-white/90 ${
-                          errors.email ? "border-red-500" : "border-gray-200"
-                        }`}
-                        required
-                        placeholder="your@email.com"
-                      />
-                      {errors.email && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.email}
-                        </p>
-                      )}
-                    </motion.div>
-
-                    {/* Phone */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 }}
-                      className="space-y-1"
-                    >
-                      <label
-                        htmlFor="phone"
-                        className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700"
-                      >
-                        <Phone className="w-4 h-4 text-[#61693b]" />
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className={`w-full px-4 py-2.5 text-sm sm:text-base border rounded-xl focus:ring-2 focus:ring-[#61693b]/50 focus:border-[#61693b] outline-none transition-all bg-white/80 hover:bg-white/90 ${
-                          errors.phone ? "border-red-500" : "border-gray-200"
-                        }`}
-                        required
-                        placeholder="+91 1234567890"
-                      />
-                      {errors.phone && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.phone}
-                        </p>
-                      )}
-                    </motion.div>
-
-                    {/* Course Select */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.35 }}
-                      className="space-y-1 relative"
-                    >
-                      <label
-                        htmlFor="course"
-                        className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700"
-                      >
-                        <BookOpen className="w-4 h-4 text-[#61693b]" />
-                        Select Adventure Programs
-                      </label>
-                      <div className="relative">
-                        <select
-                          id="course"
-                          name="course"
-                          value={formData.course}
-                          onChange={handleChange}
-                          className={`w-full px-4 py-2.5 pr-10 text-sm sm:text-base border rounded-xl focus:ring-2 focus:ring-[#61693b]/50 focus:border-[#61693b] outline-none transition-all appearance-none bg-white/80 hover:bg-white/90 ${
-                            errors.course ? "border-red-500" : "border-gray-200"
-                          }`}
-                          required
-                        >
-                          <option value="">Choose an adventure Programs</option>
-                          {courses.map((course) => (
-                            <option key={course.name} value={course.name}>
-                              {course.name}
-                            </option>
-                          ))}
-                        </select>
-                        <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                      </div>
-                      {errors.course && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.course}
-                        </p>
-                      )}
-                    </motion.div>
-
-                    {/* Message */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 }}
-                      className="space-y-1"
-                    >
-                      <label
-                        htmlFor="message"
-                        className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700"
-                      >
-                        <MessageCircle className="w-4 h-4 text-[#61693b]" />
-                        Message (Optional)
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        rows={3}
-                        className="w-full px-4 py-2.5 text-sm sm:text-base border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#61693b]/50 focus:border-[#61693b] outline-none transition-all bg-white/80 hover:bg-white/90 resize-none"
-                        placeholder="Tell us about your adventure expectations or any questions..."
-                      />
-                    </motion.div>
-
-                    {/* Submit Button */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.45 }}
-                      className="pt-2"
-                    >
-                      <motion.button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full flex items-center justify-center gap-2 bg-gradient-to-t from-[#61693b] to-[#f8af03] text-white font-medium py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-[#61693b]/25 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
-                        whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                        whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <div className="w-4 h-4 border-t-2 border-r-2 border-white rounded-full animate-spin"></div>
-                            Sending...
-                          </>
-                        ) : (
-                          <>
-                            <Send className="w-4 h-4" />
-                            Send Adventure Request
-                          </>
-                        )}
-                      </motion.button>
-                    </motion.div>
-                  </form>
-
-                  {/* Privacy note */}
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.7 }}
-                    transition={{ delay: 0.5 }}
-                    className="text-xs text-gray-500 mt-4 text-center"
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25 }}
+                    className="space-y-1"
                   >
-                    We respect your privacy. Your information will not be shared
-                    with third parties.
-                  </motion.p>
-                </div>
-              )}
+                    <label
+                      htmlFor="email"
+                      className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700"
+                    >
+                      <Mail className="w-4 h-4 text-[#61693b]" />
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-2.5 text-sm sm:text-base border rounded-xl focus:ring-2 focus:ring-[#61693b]/50 focus:border-[#61693b] outline-none transition-all bg-white/80 hover:bg-white/90 ${
+                        errors.email ? "border-red-500" : "border-gray-200"
+                      }`}
+                      required
+                      placeholder="your@email.com"
+                    />
+                    {errors.email && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.email}
+                      </p>
+                    )}
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="space-y-1"
+                  >
+                    <label
+                      htmlFor="phone"
+                      className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700"
+                    >
+                      <Phone className="w-4 h-4 text-[#61693b]" />
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-2.5 text-sm sm:text-base border rounded-xl focus:ring-2 focus:ring-[#61693b]/50 focus:border-[#61693b] outline-none transition-all bg-white/80 hover:bg-white/90 ${
+                        errors.phone ? "border-red-500" : "border-gray-200"
+                      }`}
+                      required
+                      placeholder="+91 1234567890"
+                    />
+                    {errors.phone && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.phone}
+                      </p>
+                    )}
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.35 }}
+                    className="space-y-1 relative"
+                  >
+                    <label
+                      htmlFor="course"
+                      className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700"
+                    >
+                      <BookOpen className="w-4 h-4 text-[#61693b]" />
+                      Select Adventure Course
+                    </label>
+                    <div className="relative">
+                      <select
+                        id="course"
+                        name="course"
+                        value={formData.course}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-2.5 pr-10 text-sm sm:text-base border rounded-xl focus:ring-2 focus:ring-[#61693b]/50 focus:border-[#61693b] outline-none transition-all appearance-none bg-white/80 hover:bg-white/90 ${
+                          errors.course ? "border-red-500" : "border-gray-200"
+                        }`}
+                        required
+                      >
+                        <option value="">Choose an adventure course</option>
+                        {courses.map((course) => (
+                          <option key={course.name} value={course.name}>
+                            {course.name}
+                          </option>
+                        ))}
+                      </select>
+                      <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                    </div>
+                    {errors.course && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.course}
+                      </p>
+                    )}
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="space-y-1"
+                  >
+                    <label
+                      htmlFor="message"
+                      className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700"
+                    >
+                      <MessageCircle className="w-4 h-4 text-[#61693b]" />
+                      Message (Optional)
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      rows={3}
+                      className="w-full px-4 py-2.5 text-sm sm:text-base border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#61693b]/50 focus:border-[#61693b] outline-none transition-all bg-white/80 hover:bg-white/90 resize-none"
+                      placeholder="Tell us about your adventure expectations or any questions..."
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.45 }}
+                    className="pt-2"
+                  >
+                    <motion.button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full flex items-center justify-center gap-2 bg-gradient-to-t from-[#61693b] to-[#f8af03] text-white font-medium py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-[#61693b]/25 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
+                      whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                      whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-4 h-4 border-t-2 border-r-2 border-white rounded-full animate-spin"></div>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          Send Adventure Request
+                        </>
+                      )}
+                    </motion.button>
+                  </motion.div>
+                </form>
+
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.7 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-xs text-gray-500 mt-4 text-center"
+                >
+                  We respect your privacy. Your information will not be shared
+                  with third parties.
+                </motion.p>
+              </div>
             </div>
           </motion.div>
         </motion.div>

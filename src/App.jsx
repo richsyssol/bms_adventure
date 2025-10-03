@@ -9,11 +9,14 @@ import {
 import Layout from "./layout/Layout";
 import Home from "./pages/Home/Home";
 import { CartProvider } from "./context/CartContext";
+import ThankYou from "./components/ThankYouPage";
+import ThankYouPage from "./pages/Home/ThankYou";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="/thankyou" element={<ThankYouPage />} />
       </Route>
     )
   );
