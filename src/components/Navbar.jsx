@@ -17,18 +17,18 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { name: "Home", href: "#home" },
+    { name: "Home", href: "/" },
     { name: "Why Choose Us", href: "#why-us" },
     { name: "Services", href: "#services" },
     { name: "Reviews", href: "#reviews" },
   ];
-
+  // fixed w-full z-50
   return (
     <motion.nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-40 transition-all duration-300  ${
         scrolled
           ? "bg-white text-black shadow-lg py-2"
-          : "bg-transparent text-white py-4"
+          : "bg-white text-black shadow-lg py-2"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -50,7 +50,7 @@ const Navbar = () => {
                 key={index}
                 href={item.href}
                 className={`hover:text-orange-500 transition-colors py-2 duration-300 ${
-                  scrolled ? "text-black" : "text-white"
+                  scrolled ? "text-black" : "text-black"
                 }`}
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}

@@ -27,7 +27,7 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative h-screen flex items-center justify-center overflow-hidden"
+      className="relative h-screen flex items-center justify-center overflow-hidden pt-20"
     >
       {/* Background images with crossfade */}
       {images.map((image, index) => (
@@ -50,7 +50,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Adventure Club Bhonsala
+          Bhonsala Adventure Festival
         </motion.h1>
         <motion.p
           className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto"
@@ -62,7 +62,7 @@ const HeroSection = () => {
           state-of-the-art equipment
         </motion.p>
         <motion.div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <motion.button
+          {/* <motion.button
             className="bg-gradient-to-t from-[#61693b] to-[#f8af03] text-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -71,8 +71,20 @@ const HeroSection = () => {
             whileTap={{ scale: 0.95 }}
             onClick={openBookingForm}
           >
-            Book Your Adventure
-          </motion.button>
+            Register Now
+          </motion.button> */}
+
+          <motion.a
+            href="/festival"
+            className="bg-gradient-to-t from-[#61693b] to-[#f8af03] text-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Register Now
+          </motion.a>
 
           <motion.a
             href="#services"

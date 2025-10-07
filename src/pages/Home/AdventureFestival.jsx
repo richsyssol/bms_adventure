@@ -2,7 +2,7 @@ import React from "react";
 
 const AdventureFestival = () => {
   const redirectToGoogleForm = () => {
-    window.open("https://forms.gle/NWdVRF6XhRnFV3h1A", "_blank");
+    window.open("/festival", "_blank");
   };
 
   const redirectToManaliTrek = () => {
