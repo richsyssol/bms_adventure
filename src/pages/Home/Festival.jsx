@@ -1,8 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import advelogo from "../../assets/festival/BhonsalaAdventureSporfestival.png";
 import chmeslogo from "../../assets/festival/CHMES-New-Logo_.png";
-
 import mountaincycling from "../../assets/festival/mountaincycling.jpg";
 import rangetrek from "../../assets/festival/rangetrek.jpg";
 import bouldering from "../../assets/festival/bouldering.jpg";
@@ -10,8 +10,6 @@ import navigation from "../../assets/festival/navigation.jpg";
 import ropeobstacle from "../../assets/festival/ropeobstacle.jpg";
 import rafting from "../../assets/festival/rafting.png";
 import triventure from "../../assets/festival/triventure.png";
-import triventure2 from "../../assets/festival/triventure2.png";
-import triventure3 from "../../assets/festival/triventure3.png";
 import parasailing from "../../assets/festival/parasailing.jpg";
 import sailing from "../../assets/festival/sailing.jpg";
 import scubadiving from "../../assets/festival/scubadiving.jpg";
@@ -127,7 +125,7 @@ const sportsData = {
       image: sailing,
     },
     {
-      id: 10,
+      id: 11,
       date: "2 & 3 Dec",
       sport: "Sailing SR",
       ageGroup: "18 Yrs Above",
@@ -136,7 +134,7 @@ const sportsData = {
       image: sailing,
     },
     {
-      id: 11,
+      id: 12,
       date: "3 & 4 Dec",
       sport: "Scuba Diving",
       ageGroup: "15 to 17 Yrs. & 18 Above",
@@ -147,7 +145,7 @@ const sportsData = {
   ],
   demonstration: [
     {
-      id: 12,
+      id: 13,
       sport: "Horse Riding",
       category: "Demonstration",
       link: "/horse-riding",
@@ -156,7 +154,7 @@ const sportsData = {
         "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=400&h=250&fit=crop",
     },
     {
-      id: 13,
+      id: 14,
       sport: "Bhartiya Yuddhakala",
       category: "Demonstration",
       link: "/bhartiya-yuddhakala",
@@ -164,7 +162,7 @@ const sportsData = {
       image: bhartiyyudhkala,
     },
     {
-      id: 14,
+      id: 15,
       sport: "Military Band",
       category: "Demonstration",
       link: "/military-band",
@@ -173,7 +171,7 @@ const sportsData = {
         "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=250&fit=crop",
     },
     {
-      id: 15,
+      id: 16,
       sport: "Bhonsala Gymnastic",
       category: "Demonstration",
       link: "/bhonsala-gymnastic",
@@ -183,7 +181,7 @@ const sportsData = {
   ],
   talkFilmShow: [
     {
-      id: 16,
+      id: 17,
       event: "Scuba, Sailing & Mountaineering Talk Show",
       category: "Talk & Film Show",
       link: "/adventure-talk-show",
@@ -192,7 +190,7 @@ const sportsData = {
         "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400&h=250&fit=crop",
     },
     {
-      id: 17,
+      id: 18,
       event: "Adventure Film Show",
       category: "Talk & Film Show",
       link: "/adventure-film-show",
@@ -206,32 +204,25 @@ const sportsData = {
 // SportCard Component with Image
 const SportCard = ({ sport }) => {
   const handleCardClick = () => {
-    window.open(sport.link, "_blank", "noopener,noreferrer");
+    if (
+      sport.link &&
+      (sport.link.startsWith("http") || sport.link.startsWith("https"))
+    ) {
+      window.open(sport.link, "_blank", "noopener,noreferrer");
+    }
   };
-
-  //   const getCategoryColor = (category) => {
-  //     const colors = {
-  //       "Team Competitive": "bg-blue-100 border-blue-300 hover:bg-blue-200",
-  //       "Individual Competitive":
-  //         "bg-green-100 border-green-300 hover:bg-green-200",
-  //       "Non-Competitive": "bg-yellow-100 border-yellow-300 hover:bg-yellow-200",
-  //       Demonstration: "bg-purple-100 border-purple-300 hover:bg-purple-200",
-  //       "Talk & Film Show": "bg-indigo-100 border-indigo-300 hover:bg-indigo-200",
-  //     };
-  //     return colors[category] || "bg-gray-100 border-gray-300 hover:bg-gray-200";
-  //   };
 
   return (
     <div
-      className={`shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer flex flex-col h-full`}
+      className="bg-white rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer flex flex-col h-full border border-gray-200"
       onClick={handleCardClick}
     >
       {/* Image Section */}
-      <div className="mb-4 overflow-hidden">
+      <div className="overflow-hidden rounded-t-lg">
         <img
           src={sport.image}
           alt={sport.sport || sport.event}
-          className="w-full h-50 object-cover transition-transform duration-300 hover:scale-110"
+          className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
           onError={(e) => {
             e.target.src =
               "https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=250&fit=crop";
@@ -247,7 +238,7 @@ const SportCard = ({ sport }) => {
           </h3>
         </div>
 
-        <div className="space-y-1 flex-grow">
+        <div className="space-y-2 flex-grow">
           {sport.date && (
             <p className="text-gray-600 text-sm">
               <span className="font-semibold">Date:</span> {sport.date}
@@ -282,7 +273,11 @@ const SportCard = ({ sport }) => {
 
         {/* Click to learn more */}
         <div className="mt-4 pt-3 border-t border-gray-300">
-          <p className="text-blue-600 font-semibold text-xs">Register Now →</p>
+          <p className="text-blue-600 font-semibold text-sm">
+            {sport.link && sport.link.startsWith("http")
+              ? "Register Now →"
+              : "Learn More →"}
+          </p>
         </div>
       </div>
     </div>
@@ -309,10 +304,11 @@ const SportsSection = ({ title, sports }) => {
 
 // Main Festival Component
 function Festival() {
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 py-8 pt-70">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 pt-70 py-8">
       <div className="container mx-auto px-4">
-        {/* Header */}
         {/* Header */}
         <header className="text-center mb-12">
           <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border-4 border-yellow-400 relative">
@@ -321,13 +317,8 @@ function Festival() {
               <div className="w-40 h-40 bg-white rounded-full flex items-center justify-center p-2">
                 <img
                   src={chmeslogo}
-                  alt="Left Logo"
+                  alt="CHMES Logo"
                   className="w-full h-full object-contain"
-                  onError={(e) => {
-                    // Fallback if image doesn't exist
-                    e.target.style.display = "none";
-                    e.target.nextSibling.style.display = "block";
-                  }}
                 />
               </div>
             </div>
@@ -337,38 +328,26 @@ function Festival() {
               <div className="w-40 h-40 bg-white rounded-full flex items-center justify-center p-2">
                 <img
                   src={advelogo}
-                  alt="Right Logo"
+                  alt="Adventure Sports Logo"
                   className="w-full h-full object-contain"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.nextSibling.style.display = "block";
-                  }}
                 />
               </div>
             </div>
 
             {/* Mobile Logos */}
             <div className="flex justify-center items-center gap-8 mb-6 lg:hidden">
-              <div className="w-25 h-25 bg-white rounded-full flex items-center justify-center p-2">
+              <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center p-2">
                 <img
                   src={chmeslogo}
-                  alt="Left Logo"
+                  alt="CHMES Logo"
                   className="w-full h-full object-contain"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.nextSibling.style.display = "block";
-                  }}
                 />
               </div>
-              <div className="w-25 h-25 bg-white rounded-full flex items-center justify-center p-2">
+              <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center p-2">
                 <img
                   src={advelogo}
-                  alt="Right Logo"
+                  alt="Adventure Sports Logo"
                   className="w-full h-full object-contain"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.nextSibling.style.display = "block";
-                  }}
                 />
               </div>
             </div>
@@ -385,6 +364,29 @@ function Festival() {
                 FESTIVAL 2025
               </h3>
             </div>
+          </div>
+
+          {/* Rules & Regulations Button */}
+          <div className="text-center mb-8">
+            <button
+              onClick={() => navigate("/rulesandregulation")}
+              className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2 mx-auto"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              View Rules & Regulations
+            </button>
           </div>
         </header>
 

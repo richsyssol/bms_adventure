@@ -12,6 +12,7 @@ import { CartProvider } from "./context/CartContext";
 import ThankYou from "./components/ThankYouPage";
 import ThankYouPage from "./pages/Home/ThankYou";
 import Festival from "./pages/Home/Festival";
+import RulesAndRegulations from "./pages/Home/RulesAndRegulation";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -19,6 +20,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/thankyou" element={<ThankYouPage />} />
         <Route path="/festival" element={<Festival />} />
+        <Route path="/rulesandregulation" element={<RulesAndRegulations />} />
       </Route>
     )
   );
