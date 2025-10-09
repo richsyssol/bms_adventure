@@ -8,9 +8,6 @@ import rulesPdf from "../../assets/rulesandregulation/General_Rules_and_Regulati
 
 // Rules and Regulations Data
 const rulesData = {
-  objective:
-    "The primary objective of the Bhonsala Adventure Sports Festival-2025 is to promote various types of adventure sports. It is understood that the Adventure Sports are not competitive. Even though some sports are organised at basic level in competitive format just to encourage participation and create awareness. All the adventurer sports will be organised with due safety precautions and under the supervision of qualified adventurer enthusiasts.",
-
   sections: [
     {
       title: "1. Eligibility & Registration",
@@ -251,6 +248,130 @@ const RulesAndRegulations = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 pt-70 py-8">
       <div className="container mx-auto px-4 max-w-10xl">
+        {/* Header with Logos */}
+        <header className="text-center mb-12">
+          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border-4 border-yellow-400 relative">
+            {/* Left Logo */}
+            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 hidden lg:block">
+              <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center p-2">
+                <img
+                  src={chmeslogo}
+                  alt="CHMES Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
+
+            {/* Right Logo */}
+            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 hidden lg:block">
+              <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center p-2">
+                <img
+                  src={advelogo}
+                  alt="Adventure Sports Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
+
+            {/* Mobile Logos */}
+            <div className="flex justify-center items-center gap-6 mb-6 lg:hidden">
+              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center p-2">
+                <img
+                  src={chmeslogo}
+                  alt="CHMES Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center p-2">
+                <img
+                  src={advelogo}
+                  alt="Adventure Sports Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
+
+            {/* Main Content */}
+            <div className="lg:px-24">
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+                C.H.M.E.S
+              </h1>
+              <h2 className="text-2xl md:text-3xl font-bold text-blue-800 mb-2">
+                BHONSALA ADVENTURE SPORTS
+              </h2>
+              <h3 className="text-xl md:text-2xl font-bold text-red-600 mb-4">
+                FESTIVAL 2025
+              </h3>
+              <div className="w-20 h-1 bg-yellow-500 mx-auto mb-4"></div>
+              <h4 className="text-2xl md:text-3xl font-bold text-green-800">
+                Rules & Regulations
+              </h4>
+            </div>
+          </div>
+
+          {/* Download Buttons */}
+          <div className="flex justify-center gap-4 mb-8 flex-wrap">
+            <button
+              onClick={downloadPDF}
+              className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              Download Rules (PDF)
+            </button>
+
+            <button
+              onClick={openPDFInNewTab}
+              className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              View PDF
+            </button>
+
+            <button
+              onClick={() => navigate("/festival")}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </svg>
+              Back to Festival
+            </button>
+          </div>
+        </header>
         {/* Rules Content */}
         <div className="bg-white rounded-xl shadow-2xl overflow-hidden mb-8">
           <div className="lg:flex">
