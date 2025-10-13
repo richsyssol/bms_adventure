@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import advelogo from "../../assets/festival/BhonsalaAdventureSporfestival.png";
 import chmeslogo from "../../assets/festival/CHMES-New-Logo_.png";
 // Import the PDF file
-import rulesPdf from "../../assets/rulesandregulation/General_Rules_and_Regulation_for_Adventure_Festival.pdf";
+import rulesPdf from "../../assets/rulesandregulation/BASf_Rules_and_regulations.pdf";
 
 // Rules and Regulations Data
 const rulesData = {
@@ -13,25 +13,21 @@ const rulesData = {
       title: "1. Eligibility & Registration",
       content: [
         {
-          subtitle: "1.1. Age Groups",
-          points: [
-            "Category A: 12–17 years (must provide medical fitness certificate)",
-            "Category B: 18–35 years (must provide medical fitness certificate)",
-            "Category C: 36–65 years (must provide medical fitness certificate)",
-          ],
+          subtitle: "1.1. Age Groups (Male-Female separate)",
+          points: ["12–17 years", "18–35 years", "36–65 years"],
         },
         {
           subtitle: "1.2. Registration",
           points: [
-            "Participants must complete registration forms, submit ID proof, and sign the indemnity Form.",
-            "Entry fees must be paid in advance; no on-the-spot registrations allowed.",
+            "Participants must complete the registration form, submit valid ID proof, and sign the indemnity form.",
+            "Entry fees must be paid in advance; on-the-spot registrations will not be accepted.",
           ],
         },
         {
           subtitle: "1.3. Medical Fitness",
           points: [
-            "Mandatory submission of a fitness certificate from a certified medical practitioner.",
-            "Any chronic illness, recent surgery, or injury must be disclosed.",
+            "A fitness certificate from a registered MBBS practitioner is mandatory.",
+            "Any chronic illness, recent surgery, or injury must be disclosed in the medical form and at the time of registration.",
           ],
         },
       ],
@@ -42,10 +38,10 @@ const rulesData = {
         {
           points: [
             "Respect for nature and fellow participants is mandatory.",
-            "Littering, damaging flora/fauna, or misconduct towards staff or other participants may lead to disqualification.",
+            "Littering, damaging flora or fauna, or misconduct toward staff or participants may lead to disqualification.",
             "Alcohol, recreational drugs, or performance-enhancing substances are strictly prohibited.",
-            "Safety gear (life jackets) provided by organizers must be worn at rafting.",
-            "Timing will be taken at the check point after four team members arrive.",
+            "Safety gear and instructions provided by the organizers must be followed at all times.",
+            "The team's timing will be recorded only after all team members have arrived.",
           ],
         },
       ],
@@ -55,25 +51,25 @@ const rulesData = {
       content: [
         {
           points: [
-            "Organizers' Equipment: Rafts, ropes, bouldering mats, and obstacle course setups will be provided where applicable.",
-            "Personal Gear: Participants are responsible for their own shoes, gloves, hydration packs, and clothing.",
-            "Any modification of provided equipment without approval will result in penalties.",
+            "Organizers' Equipment: Makeshift rafts, life jackets, ropes, crash pads, climbing gear, maps, compasses, and obstacle course setups will be provided where applicable.",
+            "Personal Gear: Participants must bring their own shoes, gloves, cycling helmet, water bottle, and suitable clothing.",
+            "Return Policy: Participants are responsible for returning all safety gear and items provided by the organizers. In case of loss or damage, the replacement cost will be charged to the participant, and this may also affect their score.",
           ],
         },
       ],
     },
     {
-      title: "4. Event-Specific Rules - Competition Sports",
+      title: "4. Guidelines for Competitive Events",
       content: [
         {
           subtitle: "4.1. Tri-Venture (Trekking, Rafting, Mountain Cycling)",
           points: [
-            "Teams of 4 members must compete in all three disciplines.",
-            "Timing from each discipline will be combined to calculate total performance.",
+            "Teams of four members must compete in all three disciplines.",
+            "Cumulative timing from each discipline will determine the total performance.",
             "Mechanical issues during cycling must be resolved by the team itself (self-supported).",
-            "Transition zones time between events must be within the limit communicated by the organizing team before event. Exceeding time incurs penalties.",
-            "The rules applicable for Mountain cycling, Rafting & Trekking event mentioned below are applicable for respective event in tri-venture.",
-            "If a team does not complete the first event within the given time, they will be disqualified for the next event.",
+            "Transition times between events must remain within the limits set by the organizing team; exceeding them will attract penalties.",
+            "Rules for individual events (mountain cycling, rafting, trekking) also apply to the Tri-Venture.",
+            "If a team fails to complete any event within the given time, it will be disqualified from the next event.",
           ],
         },
         {
@@ -81,16 +77,16 @@ const rulesData = {
           points: [
             "Helmets are mandatory.",
             "Drafting behind vehicles is prohibited.",
-            "Any shortcuts or deviation from the marked trail results in disqualification.",
-            "Riders must yield to overtaking competitors on narrow paths.",
+            "Any shortcuts or trail deviations will result in disqualification.",
+            "Overtaking on narrow or risky paths is strictly prohibited.",
           ],
         },
         {
           subtitle: "4.3. Trekking",
           points: [
-            "Trekkers must stick to designated trails",
-            "Any shortcuts or deviation from the marked trail results in disqualification.",
-            "Any reckless behavior will attract disqualification.",
+            "Trekkers must stick to the designated trails.",
+            "Any shortcuts or deviation will lead to disqualification.",
+            "Reckless behaviour will attract penalties or disqualification.",
           ],
         },
         {
@@ -98,59 +94,52 @@ const rulesData = {
           points: [
             "Life jackets are mandatory.",
             "Teams must stay in their assigned rafts; switching is not allowed.",
-            "Intentional capsizing or rough play is prohibited.",
-            "In case of a flip, all team members must account for one another before proceeding.",
+            "Intentional capsizing or rough play is strictly prohibited.",
           ],
         },
         {
           subtitle: "4.5. Bouldering",
           points: [
             "Each climber gets two attempts per problem.",
-            "Completing designated boulder route within given time will be counted & deviation from the route will be penalized",
-            "Time limits per problem will be enforced.",
-          ],
-        },
-        {
-          subtitle: "4.6. Rope & Obstacle Course",
-          points: [
-            "Touching marked 'out-of-bounds' areas incurs penalties.",
-            "Skipping any obstacle results in a penalty or disqualification.",
+            "Completion of a designated route within the given time will be counted; any deviation will be penalized.",
+            "Time limits per problem will be strictly enforced.",
           ],
         },
       ],
     },
     {
-      title: "5. Non-Competition Sports on introductory format",
+      title: "5. Non-Competitive (Introductory) Sports",
       content: [
         {
           subtitle: "5.1. Parasailing",
           points: [
-            "Participants must follow the instructor's directions.",
-            "If participant unable the follow the direction of instructor correctly by any reason they will be disqualified for taking flight.",
+            "Participants must follow all instructor directions.",
+            "Failure to follow instructions correctly will result in disqualification from flight.",
           ],
         },
         {
-          subtitle: "5.2. River Sailing",
+          subtitle: "5.2. Sailing",
           points: [
-            "Life jacket is required.",
-            "Sail boats are powered with the wind so sailing will be dependable on the weather conditions.",
+            "Life jackets are mandatory.",
+            "Sailing depends on weather conditions, as sailboats are wind-powered.",
             "Beginners must attend the orientation session.",
+            "Participants must follow all instructor instructions.",
           ],
         },
         {
           subtitle: "5.3. Scuba Diving",
           points: [
-            "Beginners must undergo introductory training",
-            "Participants must follow the instructor's directions.",
-            "If participant unable the follow the direction of instructor correctly by any reason they will be disqualified for taking part in scuba diving.",
+            "Beginners must undergo introductory training.",
+            "Participants must follow all instructor directions.",
+            "Failure to follow instructions will lead to disqualification.",
           ],
         },
         {
           subtitle: "5.4. Rifle Shooting",
           points: [
-            "Beginners must undergo introductory training",
-            "Participants must follow the instructor's directions.",
-            "If participant unable the follow the direction of instructor correctly by any reason they will be disqualified for taking part in rifle shooting.",
+            "Beginners must undergo introductory training.",
+            "Participants must follow all instructor directions.",
+            "Failure to do so will result in disqualification.",
           ],
         },
       ],
@@ -160,8 +149,8 @@ const rulesData = {
       content: [
         {
           points: [
-            "Use only eco-friendly materials for personal use",
-            "Follow Leave No Trace principles at all times.",
+            "Use only eco-friendly materials for personal use.",
+            "Follow 'Leave No Trace' principles at all times.",
           ],
         },
       ],
@@ -171,9 +160,9 @@ const rulesData = {
       content: [
         {
           points: [
-            "Late starts may not be compensated.",
-            "Minor or Major Violation attract to appropriate penalties.",
-            "Appeals against penalties must be lodged in writing with appellate committee. Their decision will be final and binding.",
+            "Late starts will not be compensated.",
+            "Minor or major violations will attract appropriate penalties.",
+            "Appeals against penalties must be submitted in writing to the appellate committee. Their decision will be final and binding.",
           ],
         },
       ],
@@ -183,8 +172,9 @@ const rulesData = {
       content: [
         {
           points: [
-            "Participants must assist fellow competitors in distress and report accidents immediately.",
-            "Any unforeseen situation may result in event suspension or rerouting.",
+            "Participants must assist fellow competitors in distress and report any incidents immediately.",
+            "In unforeseen situations, events may be suspended or rerouted by organizers.",
+            "All participants must follow the instructions of instructors and volunteers during every event.",
           ],
         },
       ],
@@ -194,10 +184,11 @@ const rulesData = {
       content: [
         {
           points: [
-            "Tri-Venture rankings will be based on cumulative performance across all three activities.",
-            "Ranking of all competitive team sports will be based on cumulative performance of respective sports.",
-            "Separate awards for each group & gender categories.",
-            "Certificates of participation for all finishers.",
+            "Tri-Venture rankings will be based on cumulative performance across all three events.",
+            "Rankings in all team competitive sports will be based on overall performance.",
+            "Separate awards will be given for each age group and gender category.",
+            "Certificates and medals will be awarded to all finishers.",
+            "If fewer than five teams participate in any event, only the 1st prize will be awarded.",
           ],
         },
       ],
@@ -207,18 +198,46 @@ const rulesData = {
       content: [
         {
           points: [
-            "The organizers are not responsible for injuries, equipment loss, or accidents caused by negligence or rule violation or by any other reasons.",
-            "By registering, participants accept all risks inherent in adventure sports.",
+            "The organizers are not responsible for injuries, equipment loss, or accidents resulting from negligence, rule violations, or any other reason.",
+            "By registering, participants accept all risks associated with adventure sports.",
           ],
         },
       ],
     },
     {
-      title: "11. Judge",
+      title: "11. Appeal Panel",
       content: [
         {
           points: [
-            "An Adventure Festival Judge Panel will be appointed to resolve problems and queries; of the participants following fair decision-making practice. Their decision shall be final and binding on all participants.",
+            "An Adventure Sports Festival Appeal Panel will be appointed to resolve complaints, problems, and queries of participants, following fair decision-making practices. Their decision shall be final and binding.",
+          ],
+        },
+      ],
+    },
+    {
+      title: "12. Cancellation Policy",
+      content: [
+        {
+          subtitle: "12.1. No Refunds",
+          points: [
+            "Once registration is completed, no refund will be granted under any circumstances (including withdrawal, absence, or disqualification).",
+          ],
+        },
+        {
+          subtitle: "12.2. Replacement of Team Member",
+          points: [
+            "Replacement of a team member is allowed until one day prior to the event and only after completing all formalities with the organising committee.",
+          ],
+        },
+      ],
+    },
+    {
+      title: "13. Organisational Rights",
+      content: [
+        {
+          points: [
+            "The organizing institution reserves the right to use photographs and videos taken during the event for publicity, promotion, or advertising purposes in any media format.",
+            "In case of climatic conditions or any other unforeseen circumstances, the organisation reserves the right to change the event schedule or cancel the event.",
           ],
         },
       ],
@@ -233,8 +252,7 @@ const RulesAndRegulations = () => {
     // Create a temporary anchor element to trigger download
     const element = document.createElement("a");
     element.href = rulesPdf;
-    element.download =
-      "Bhonsala_Adventure_Sports_Festival_Rules_Regulations.pdf";
+    element.download = "BASf_Rules_and_regulations.pdf";
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
