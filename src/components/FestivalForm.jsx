@@ -16,6 +16,14 @@ import {
 
 const courses = [
   {
+    name: "Tri-venture(Cycling,Range Trek,Rafting)",
+    paymentLink: "https://rzp.io/rzp/KNCmUff",
+  },
+  {
+    name: "Mountain Cycling",
+    paymentLink: "https://rzp.io/rzp/O843kdE",
+  },
+  {
     name: "Range Trek",
     paymentLink: "https://rzp.io/rzp/e3BuJ4R",
   },
@@ -27,14 +35,7 @@ const courses = [
     name: "Rafting",
     paymentLink: "https://rzp.io/rzp/V1WtPnfo",
   },
-  {
-    name: "Tri-venture(Cycling,Range Trek,Rafting)",
-    paymentLink: "https://rzp.io/rzp/KNCmUff",
-  },
-  {
-    name: "Mountain Cycling",
-    paymentLink: "https://rzp.io/rzp/O843kdE",
-  },
+
   {
     name: "Bouldering",
     paymentLink: "https://rzp.io/rzp/dNsmjpoK",
