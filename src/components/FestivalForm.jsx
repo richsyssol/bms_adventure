@@ -168,7 +168,7 @@ function FestivalForm({ isOpen, setIsOpen }) {
       formPayload.append("phone", formData.phone);
       formPayload.append("course", formData.course);
       formPayload.append("message", formData.message || "No message provided");
-      formPayload.append("source", "Adventure Course Enquiry");
+      formPayload.append("source", "Festival Sports Enquiry");
 
       const response = await fetch(scriptURL, {
         method: "POST",
