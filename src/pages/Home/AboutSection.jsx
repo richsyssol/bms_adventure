@@ -57,7 +57,7 @@ const WhyChooseUs = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-gray-50" id="why-us">
+    <section className="py-20 px-4" id="why-us">
       <div className="container mx-auto">
         <motion.h2
           className="text-4xl font-bold text-center mb-4"
@@ -89,7 +89,7 @@ const WhyChooseUs = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300"
+              className="bg-white p-6 rounded-lg text-center hover:shadow-lg transition-shadow duration-300"
               variants={itemVariants}
               whileHover={{ y: -5 }}
             >

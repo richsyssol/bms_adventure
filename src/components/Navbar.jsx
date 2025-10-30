@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes, FaPhone } from "react-icons/fa";
 import Logo from "../components/Logo";
+import { usePopup } from "../context/PopupContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { openPopup } = usePopup();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,21 +20,22 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Why Choose Us", href: "#why-us" },
-    { name: "Services", href: "#services" },
-    { name: "Reviews", href: "#reviews" },
+    { name: "Why Choose Us", href: "/whychooseus" },
+    { name: "Services", href: "/services" },
+    { name: "Reviews", href: "/reviews" },
+    { name: "Festival", href: "/festival" },
   ];
-  // fixed w-full z-50
+  // fixed w-full z-40 transition-all duration-300
   return (
     <motion.nav
-      className={`fixed w-full z-40 transition-all duration-300  ${
+      className={` w-full z-40  ${
         scrolled
           ? "bg-white text-black shadow-lg py-2"
           : "bg-white text-black shadow-lg py-2"
       }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
+      // initial={{ y: -100 }}
+      // animate={{ y: 0 }}
+      // transition={{ duration: 0.6 }}
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-col justify-between md:items-center">
@@ -63,7 +66,7 @@ const Navbar = () => {
               className="bg-gradient-to-t from-[#61693b] to-[#f8af03] text-white font-semibold py-2 px-8 rounded-full transition-all duration-300"
               onClick={() => {
                 setIsOpen(false); // Close mobile menu if needed
-                window.openAdventureEnquiryForm(); // Open the form
+                openPopup(); // Open the form
               }}
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -76,7 +79,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             className={`md:hidden text-2xl pt-4 ${
-              scrolled ? "text-black" : "text-white"
+              scrolled ? "text-black" : "text-black"
             }`}
             onClick={() => setIsOpen(!isOpen)}
           >
@@ -112,8 +115,8 @@ const Navbar = () => {
                 <motion.button
                   className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full transition-all duration-300 mt-4"
                   onClick={() => {
-                    setIsOpen(false);
-                    document.getElementById("enquiry-form").showModal();
+                    setIsOpen(false); // Close mobile menu if needed
+                    openPopup(); // Open the form
                   }}
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}

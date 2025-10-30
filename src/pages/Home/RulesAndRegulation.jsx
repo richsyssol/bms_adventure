@@ -264,11 +264,11 @@ const RulesAndRegulations = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 pt-70 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 md:py-8 py-3">
       <div className="container mx-auto px-4 max-w-10xl">
         {/* Header with Logos */}
-        <header className="text-center mb-12">
-          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border-4 border-yellow-400 relative">
+        <header className="text-center md:mb-12 mb-4">
+          <div className="bg-white rounded-2xl shadow-xl p-2 mb-3 md:p-8 md:mb-8 border-4 border-yellow-400 relative">
             {/* Left Logo */}
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 hidden lg:block">
               <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center p-2">
@@ -292,15 +292,15 @@ const RulesAndRegulations = () => {
             </div>
 
             {/* Mobile Logos */}
-            <div className="flex justify-center items-center gap-6 mb-6 lg:hidden">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center p-2">
+            <div className="flex justify-center items-center gap-6 md:mb-6 lg:hidden">
+              <div className="w-15 h-15 bg-white rounded-full flex items-center justify-center p-2">
                 <img
                   src={chmeslogo}
                   alt="CHMES Logo"
                   className="w-full h-full object-contain"
                 />
               </div>
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center p-2">
+              <div className="w-15 h-15 bg-white rounded-full flex items-center justify-center p-2">
                 <img
                   src={advelogo}
                   alt="Adventure Sports Logo"
@@ -311,27 +311,26 @@ const RulesAndRegulations = () => {
 
             {/* Main Content */}
             <div className="lg:px-24">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+              <h1 className="text-1xl md:text-4xl font-bold text-gray-800 md:mb-2">
                 C.H.M.E.S
               </h1>
-              <h2 className="text-2xl md:text-3xl font-bold text-blue-800 mb-2">
+              <h2 className="text-1xl md:text-3xl font-bold text-blue-800 md:mb-2">
                 BHONSALA ADVENTURE SPORTS
               </h2>
-              <h3 className="text-xl md:text-2xl font-bold text-red-600 mb-4">
+              <h3 className="text-1xl md:text-2xl font-bold text-red-600 md:mb-4">
                 FESTIVAL 2025
               </h3>
-              <div className="w-20 h-1 bg-yellow-500 mx-auto mb-4"></div>
-              <h4 className="text-2xl md:text-3xl font-bold text-green-800">
+              <h4 className="text-1xl md:text-3xl font-bold text-green-800">
                 Rules & Regulations
               </h4>
             </div>
           </div>
 
           {/* Download Buttons */}
-          <div className="flex justify-center gap-4 mb-8 flex-wrap">
+          <div className="flex justify-center gap-4 md:mb-8 mb-3 flex-wrap">
             <button
               onClick={downloadPDF}
-              className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2"
+              className="bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-2 md:py-3 md:px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2"
             >
               <svg
                 className="w-5 h-5"
@@ -351,7 +350,7 @@ const RulesAndRegulations = () => {
 
             <button
               onClick={openPDFInNewTab}
-              className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2"
+              className="bg-green-600 hover:bg-green-700 text-white font-bold py-1 px-2 md:py-3 md:px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2"
             >
               <svg
                 className="w-5 h-5"
@@ -367,26 +366,6 @@ const RulesAndRegulations = () => {
                 />
               </svg>
               View PDF
-            </button>
-
-            <button
-              onClick={() => navigate("/festival")}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                />
-              </svg>
-              Back to Festival
             </button>
           </div>
         </header>

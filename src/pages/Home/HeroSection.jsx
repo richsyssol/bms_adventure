@@ -41,7 +41,7 @@ const HeroSection = () => {
       ))}
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
+      <div className="absolute inset-0 bg-black opacity-20 z-10"></div>
 
       <div className="relative z-20 text-center text-white px-4">
         <motion.h1
@@ -50,7 +50,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Bhonsala Adventure Festival
+          Bhonsala Adventure Sports Festival 2025
         </motion.h1>
         <motion.p
           className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto"

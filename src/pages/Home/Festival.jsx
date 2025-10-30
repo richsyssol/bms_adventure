@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import advelogo from "../../assets/festival/BhonsalaAdventureSporfestival.png";
 import chmeslogo from "../../assets/festival/CHMES-New-Logo_.png";
@@ -16,61 +17,50 @@ import scubadiving from "../../assets/festival/scubadiving.jpg";
 import rifleshooting from "../../assets/festival/rifleshooting.jpg";
 import bhartiyyudhkala from "../../assets/festival/bhartiyyudhkala.jpg";
 import bhonsalagymnastic from "../../assets/festival/bhonsalagymnastic.jpg";
+import horseriding from "../../assets/festival/horse-riding.jpeg";
+import militaryband from "../../assets/festival/military-band.jpeg";
+
+import { usePopup } from "../../context/PopupContext";
 
 // Sports data in JSON format with image URLs
 const sportsData = {
   teamCompetitive: [
     {
       id: 1,
-      date: "29 Nov",
-      sport: "Mountain Cycling",
-      ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
-      category: "Team Competitive",
-      link: "https://rzp.io/rzp/O843kdE",
-      participants: "4 members per Team",
-      teamType: "Male & Female separate Team",
-      image: mountaincycling,
-    },
-    {
-      id: 2,
       date: "30 Nov",
       sport: "Range Trek",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Team Competitive",
-      link: "https://rzp.io/rzp/e3BuJ4R",
       participants: "4 members per Team",
       teamType: "Male & Female separate Team",
       image: rangetrek,
     },
     {
-      id: 3,
+      id: 2,
       date: "5 Dec",
       sport: "Navigation",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Team Competitive",
-      link: "https://rzp.io/rzp/81LgXTCE",
       participants: "4 members per Team",
       teamType: "Male & Female separate Team",
       image: navigation,
     },
     {
-      id: 4,
+      id: 3,
       date: "6 Dec",
       sport: "Rafting",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Team Competitive",
-      link: "https://rzp.io/rzp/V1WtPnfo",
       participants: "4 members per Team",
       teamType: "Male & Female separate Team",
       image: rafting,
     },
     {
-      id: 5,
+      id: 4,
       date: "7 Dec",
       sport: "Tri-venture (Cycling, Range Trek, Rafting)",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Team Competitive",
-      link: "https://rzp.io/rzp/KNCmUff",
       participants: "4 members per Team",
       teamType: "Male & Female separate Team",
       image: triventure,
@@ -78,12 +68,19 @@ const sportsData = {
   ],
   individualCompetitive: [
     {
+      id: 5,
+      date: "29 Nov",
+      sport: "Mountain Cycling",
+      ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
+      category: "Team Competitive",
+      image: mountaincycling,
+    },
+    {
       id: 6,
       date: "4 Dec",
       sport: "Bouldering",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Individual Competitive",
-      link: "https://rzp.io/rzp/dNsmjpoK ",
       image: bouldering,
     },
     {
@@ -92,7 +89,6 @@ const sportsData = {
       sport: "Rope & Obstacle",
       ageGroup: "12 to 17 Yrs. & 18 to 35 Yrs.",
       category: "Individual Competitive",
-      link: "https://rzp.io/rzp/hLXQTDkA",
       image: ropeobstacle,
     },
   ],
@@ -103,7 +99,6 @@ const sportsData = {
       sport: "Rifle Shooting",
       ageGroup: "15 to 17 Yrs. & 18 Above",
       category: "Non-Competitive",
-      link: "https://rzp.io/rzp/olHJnpE",
       image: rifleshooting,
     },
     {
@@ -112,7 +107,6 @@ const sportsData = {
       sport: "Parasailing",
       ageGroup: "18 to 35 Yrs.",
       category: "Non-Competitive",
-      link: "https://rzp.io/rzp/Lqv6hGAH",
       image: parasailing,
     },
     {
@@ -121,7 +115,6 @@ const sportsData = {
       sport: "Sailing JR",
       ageGroup: "15 to 17 Yrs",
       category: "Non-Competitive",
-      link: "https://rzp.io/rzp/SwxOt3v",
       image: sailing,
     },
     {
@@ -130,7 +123,6 @@ const sportsData = {
       sport: "Sailing SR",
       ageGroup: "18 Yrs Above",
       category: "Non-Competitive",
-      link: "https://rzp.io/rzp/NpHknscn",
       image: sailing,
     },
     {
@@ -139,7 +131,6 @@ const sportsData = {
       sport: "Scuba Diving",
       ageGroup: "15 to 17 Yrs. & 18 Above",
       category: "Non-Competitive",
-      link: "https://rzp.io/rzp/qTGYjOi",
       image: scubadiving,
     },
   ],
@@ -148,16 +139,13 @@ const sportsData = {
       id: 13,
       sport: "Horse Riding",
       category: "Demonstration",
-      link: "/horse-riding",
       description: "Open to All",
-      image:
-        "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=400&h=250&fit=crop",
+      image: horseriding,
     },
     {
       id: 14,
       sport: "Bhartiya Yuddhakala",
       category: "Demonstration",
-      link: "/bhartiya-yuddhakala",
       description: "Open to All",
       image: bhartiyyudhkala,
     },
@@ -165,16 +153,13 @@ const sportsData = {
       id: 15,
       sport: "Military Band",
       category: "Demonstration",
-      link: "/military-band",
       description: "Open to All",
-      image:
-        "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=250&fit=crop",
+      image: militaryband,
     },
     {
       id: 16,
       sport: "Bhonsala Gymnastic",
       category: "Demonstration",
-      link: "/bhonsala-gymnastic",
       description: "Open to All",
       image: bhonsalagymnastic,
     },
@@ -184,7 +169,6 @@ const sportsData = {
       id: 17,
       event: "Scuba, Sailing & Mountaineering Talk Show",
       category: "Talk & Film Show",
-      link: "/adventure-talk-show",
       description: "Open to All",
       image:
         "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400&h=250&fit=crop",
@@ -193,7 +177,6 @@ const sportsData = {
       id: 18,
       event: "Adventure Film Show",
       category: "Talk & Film Show",
-      link: "/adventure-film-show",
       description: "Open to All",
       image:
         "https://images.unsplash.com/photo-1489599809505-fb9c1e0b95c3?w=400&h=250&fit=crop",
@@ -203,20 +186,10 @@ const sportsData = {
 
 // SportCard Component with Image
 const SportCard = ({ sport }) => {
-  const handleCardClick = () => {
-    if (
-      sport.link &&
-      (sport.link.startsWith("http") || sport.link.startsWith("https"))
-    ) {
-      window.open(sport.link, "_blank", "noopener,noreferrer");
-    }
-  };
-
+  const [isOpen, setIsOpen] = useState(false);
+  const { openPopup } = usePopup();
   return (
-    <div
-      className="bg-white rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer flex flex-col h-full border border-gray-200"
-      onClick={handleCardClick}
-    >
+    <div className="bg-white rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer flex flex-col h-full border border-gray-200">
       {/* Image Section */}
       <div className="overflow-hidden rounded-t-lg">
         <img
@@ -270,15 +243,14 @@ const SportCard = ({ sport }) => {
             </p>
           )}
         </div>
-
-        {/* Click to learn more */}
-        <div className="mt-4 pt-3 border-t border-gray-300">
-          <p className="text-blue-600 font-semibold text-sm">
-            {sport.link && sport.link.startsWith("http")
-              ? "Register Now →"
-              : "Learn More →"}
-          </p>
-        </div>
+        <span
+          onClick={() => {
+            openPopup();
+          }}
+          className="text-blue-500 font-bold py-1 my-1 transition duration-300 cursor-pointer "
+        >
+          Register Now
+        </span>
       </div>
     </div>
   );
@@ -305,13 +277,15 @@ const SportsSection = ({ title, sports }) => {
 // Main Festival Component
 function Festival() {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const { openPopup } = usePopup();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 pt-70 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 py-8">
       <div className="container mx-auto px-4">
         {/* Header */}
         <header className="text-center mb-12">
-          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border-4 border-yellow-400 relative">
+          <div className="bg-white rounded-2xl shadow-xl md:p-8 mb-8 border-4 border-yellow-400 relative">
             {/* Left Logo */}
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 hidden lg:block">
               <div className="w-40 h-40 bg-white rounded-full flex items-center justify-center p-2">
@@ -335,15 +309,15 @@ function Festival() {
             </div>
 
             {/* Mobile Logos */}
-            <div className="flex justify-center items-center gap-8 mb-6 lg:hidden">
-              <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center p-2">
+            <div className="flex justify-center items-center gap-8 md:mb-6 lg:hidden">
+              <div className="w-15 h-15 bg-white rounded-full flex items-center justify-center p-2">
                 <img
                   src={chmeslogo}
                   alt="CHMES Logo"
                   className="w-full h-full object-contain"
                 />
               </div>
-              <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center p-2">
+              <div className="w-15 h-15 bg-white rounded-full flex items-center justify-center p-2">
                 <img
                   src={advelogo}
                   alt="Adventure Sports Logo"
@@ -354,15 +328,23 @@ function Festival() {
 
             {/* Main Content */}
             <div className="lg:px-32">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+              <h1 className="text-1xl md:text-5xl font-bold text-gray-800 md:mb-4">
                 C.H.M.E.S
               </h1>
-              <h2 className="text-3xl md:text-4xl font-bold text-blue-800 mb-4">
+              <h2 className="text-1xl md:text-4xl font-bold text-blue-800 md:mb-4">
                 BHONSALA ADVENTURE SPORTS
               </h2>
-              <h3 className="text-2xl md:text-3xl font-bold text-red-600 mb-6">
+              <h3 className="text-1xl md:text-3xl font-bold text-red-600 md:mb-6">
                 FESTIVAL 2025
               </h3>
+              <button
+                onClick={() => {
+                  openPopup(); // This will open FestivalForm since we're on /festival page
+                }}
+                className="bg-green-600 hover:bg-green-700 text-white font-bold py-1 my-1 px-2 rounded-lg md:text-lg transition duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2 mx-auto"
+              >
+                Register Now
+              </button>
             </div>
           </div>
 
@@ -370,7 +352,7 @@ function Festival() {
           <div className="text-center mb-8">
             <button
               onClick={() => navigate("/rulesandregulation")}
-              className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2 mx-auto"
+              className="bg-green-600 hover:bg-green-700 text-white font-bold py-1 px-2 rounded-lg md:text-lg transition duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2 mx-auto"
             >
               <svg
                 className="w-5 h-5"

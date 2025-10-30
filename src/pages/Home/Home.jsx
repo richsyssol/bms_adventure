@@ -1,27 +1,22 @@
-import React, { useState } from "react";
-// import AboutSection from "./AboutSection";
+import React from "react";
 import HeroSection from "./HeroSection";
 import WhyChooseUs from "./AboutSection";
 import Services from "./Services";
 import Reviews from "./Reviews";
-import EnquiryForm from "../../components/EnquiryForm";
+// import EnquiryForm from "../../components/EnquiryForm";
 import AdventureCTASection from "./AdventureCTASection";
 import FinalCTA from "./FinalCTA";
 import Terms from "./Terms";
 import AdventureFestival from "./AdventureFestival";
+import { usePopup } from "../../context/PopupContext"; // Import the hook
 
 function Home() {
-  const [isFormOpen, setIsFormOpen] = useState(false);
-
-  // Function to open the form
-  const openForm = () => {
-    setIsFormOpen(true);
-  };
+  const { isOpen, openPopup } = usePopup(); // Use the context
 
   // Make the function available globally for other components
   React.useEffect(() => {
-    window.openAdventureEnquiryForm = openForm;
-  }, []);
+    window.openAdventureEnquiryForm = openPopup;
+  }, [openPopup]);
 
   return (
     <div className="App">
@@ -34,9 +29,52 @@ function Home() {
       <WhyChooseUs />
       <Reviews />
       <FinalCTA />
-      <EnquiryForm isOpen={isFormOpen} setIsOpen={setIsFormOpen} />
+      {/* <EnquiryForm isOpen={isOpen} setIsOpen={openPopup} /> */}
     </div>
   );
 }
 
 export default Home;
+
+// import React, { useState } from "react";
+// // import AboutSection from "./AboutSection";
+// import HeroSection from "./HeroSection";
+// import WhyChooseUs from "./AboutSection";
+// import Services from "./Services";
+// import Reviews from "./Reviews";
+// import EnquiryForm from "../../components/EnquiryForm";
+// import AdventureCTASection from "./AdventureCTASection";
+// import FinalCTA from "./FinalCTA";
+// import Terms from "./Terms";
+// import AdventureFestival from "./AdventureFestival";
+
+// function Home() {
+//   const [isFormOpen, setIsFormOpen] = useState(false);
+
+//   // Function to open the form
+//   const openForm = () => {
+//     setIsFormOpen(true);
+//   };
+
+//   // Make the function available globally for other components
+//   React.useEffect(() => {
+//     window.openAdventureEnquiryForm = openForm;
+//   }, []);
+
+//   return (
+//     <div className="App">
+//       <HeroSection />
+//       <AdventureFestival />
+//       <Services />
+//       <AdventureCTASection />
+//       <Terms />
+//       <FinalCTA />
+//       <WhyChooseUs />
+//       <Reviews />
+//       <FinalCTA />
+//       <EnquiryForm isOpen={isFormOpen} setIsOpen={setIsFormOpen} />
+//     </div>
+//   );
+// }
+
+// export default Home;

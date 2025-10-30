@@ -69,7 +69,7 @@ const Reviews = () => {
   };
 
   return (
-    <section id="reviews" className="py-20 px-4 bg-gray-50">
+    <section id="reviews" className="py-20 px-4">
       <div className="container mx-auto">
         <motion.h2
           className="text-4xl font-bold text-center mb-4"

@@ -198,7 +198,7 @@ function EnquiryForm({ isOpen, setIsOpen }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.7 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-gradient-to-t from-[#61693b] to-[#f3e5c4] backdrop-blur-md"
+            className="fixed inset-0 bg-gradient-to-t from-[#f5f8e7] to-[#f3e5c4] backdrop-blur-md"
             onClick={() => setIsOpen(false)}
           />
 

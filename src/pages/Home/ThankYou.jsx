@@ -63,7 +63,7 @@ function ThankYouPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#61693b] via-[#8a9362] to-[#f3e5c4]">
       {/* Main Content */}
-      <main className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-70">
+      <main className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:pt-70 pt-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
