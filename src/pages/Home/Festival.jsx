@@ -51,7 +51,6 @@ const sportsData = {
   teamCompetitive: [
     {
       id: 1,
-      date: "30 Nov",
       sport: "Range Trek",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Team Competitive",
@@ -72,7 +71,6 @@ const sportsData = {
     },
     {
       id: 2,
-      date: "5 Dec",
       sport: "Navigation",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Team Competitive",
@@ -93,7 +91,6 @@ const sportsData = {
     },
     {
       id: 3,
-      date: "6 Dec",
       sport: "Rafting",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Team Competitive",
@@ -114,7 +111,6 @@ const sportsData = {
     },
     {
       id: 4,
-      date: "7 Dec",
       sport: "Tri-venture (Cycling, Range Trek, Rafting)",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Team Competitive",
@@ -137,7 +133,6 @@ const sportsData = {
   individualCompetitive: [
     {
       id: 5,
-      date: "29 Nov",
       sport: "Mountain Cycling",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Individual Competitive",
@@ -156,7 +151,6 @@ const sportsData = {
     },
     {
       id: 6,
-      date: "4 Dec",
       sport: "Bouldering",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Individual Competitive",
@@ -175,7 +169,6 @@ const sportsData = {
     },
     {
       id: 7,
-      date: "6 Dec",
       sport: "Rope & Obstacle",
       ageGroup: "12 to 17 Yrs. & 18 to 35 Yrs.",
       category: "Individual Competitive",
@@ -196,7 +189,6 @@ const sportsData = {
   nonCompetitive: [
     {
       id: 8,
-      date: "29 Nov",
       sport: "Rifle Shooting",
       ageGroup: "15 to 17 Yrs. & 18 Above",
       category: "Non-Competitive",
@@ -215,7 +207,6 @@ const sportsData = {
     },
     {
       id: 9,
-      date: "1 Dec",
       sport: "Parasailing",
       ageGroup: "18 to 35 Yrs.",
       category: "Non-Competitive",
@@ -234,7 +225,6 @@ const sportsData = {
     },
     {
       id: 10,
-      date: "2 & 3 Dec",
       sport: "Sailing JR",
       ageGroup: "15 to 17 Yrs",
       category: "Non-Competitive",
@@ -252,7 +242,6 @@ const sportsData = {
     },
     {
       id: 11,
-      date: "2 & 3 Dec",
       sport: "Sailing SR",
       ageGroup: "18 Yrs Above",
       category: "Non-Competitive",
@@ -270,7 +259,6 @@ const sportsData = {
     },
     {
       id: 12,
-      date: "3 & 4 Dec",
       sport: "Scuba Diving",
       ageGroup: "15 to 17 Yrs. & 18 Above",
       category: "Non-Competitive",
@@ -411,14 +399,14 @@ const CardImageCarousel = ({ images, sportName }) => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="relative md:h-68 h-70 overflow-hidden">
+      <div className="relative md:h-55 h-70 overflow-hidden">
         <div className="relative w-full h-full">
           {images.map((image, index) => (
             <img
               key={index}
               src={image}
               alt={`${sportName} - Image ${index + 1}`}
-              className={`absolute top-0 left-0 w-full md:h-68 h-70 object-cover transition-opacity duration-1000 ${
+              className={`absolute top-0 left-0 w-full md:h-55 h-70 object-cover transition-opacity duration-1000 ${
                 index === currentIndex ? "opacity-100" : "opacity-0"
               }`}
               onError={(e) => {
@@ -540,14 +528,14 @@ const ModalImageCarousel = ({ images, sportName }) => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="relative md:h-200 h-120 overflow-hidden">
+      <div className="relative h-80 md:h-120 overflow-hidden">
         <div className="relative w-full h-full">
           {images.map((image, index) => (
             <img
               key={index}
               src={image}
               alt={`${sportName} - Image ${index + 1}`}
-              className={`absolute top-0 left-0 w-full md:h-200 h-120 object-cover transition-opacity duration-1000 ${
+              className={`absolute top-0 left-0 w-full h-80 md:h-120 object-cover transition-opacity duration-1000 ${
                 index === currentIndex ? "opacity-100" : "opacity-0"
               }`}
               onError={(e) => {
@@ -567,10 +555,10 @@ const ModalImageCarousel = ({ images, sportName }) => {
               e.stopPropagation();
               prevImage();
             }}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-opacity-70"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-opacity-70"
           >
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -588,10 +576,10 @@ const ModalImageCarousel = ({ images, sportName }) => {
               e.stopPropagation();
               nextImage();
             }}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-opacity-70"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-opacity-70"
           >
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -609,7 +597,7 @@ const ModalImageCarousel = ({ images, sportName }) => {
 
       {/* Dots Indicator */}
       {images.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
           {images.map((_, index) => (
             <button
               key={index}
@@ -617,7 +605,7 @@ const ModalImageCarousel = ({ images, sportName }) => {
                 e.stopPropagation();
                 goToImage(index);
               }}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 index === currentIndex
                   ? "bg-white scale-125"
                   : "bg-white bg-opacity-50 hover:bg-opacity-75"
@@ -629,7 +617,7 @@ const ModalImageCarousel = ({ images, sportName }) => {
 
       {/* Image Counter */}
       {images.length > 1 && (
-        <div className="absolute top-4 right-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm z-10">
+        <div className="absolute top-4 right-4 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs z-10">
           {currentIndex + 1} / {images.length}
         </div>
       )}
@@ -637,13 +625,13 @@ const ModalImageCarousel = ({ images, sportName }) => {
   );
 };
 
-// Detail Modal Component
+// Detail Modal Component with Side-by-Side Layout
 const DetailModal = ({ sport, isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-w-6xl w-full max-h-[95vh] overflow-y-auto">
+      <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto">
         <div className="relative">
           {/* Header */}
           <div className="flex justify-between items-center p-6 border-b">
@@ -670,104 +658,113 @@ const DetailModal = ({ sport, isOpen, onClose }) => {
             </button>
           </div>
 
-          {/* Content */}
+          {/* Content - Side by Side Layout */}
           <div className="p-6">
-            {/* Image Carousel - Using larger modal carousel */}
-            <div className="mb-6">
-              <ModalImageCarousel
-                images={sport.images}
-                sportName={sport.sport || sport.event}
-              />
-            </div>
-
-            {/* Basic Information */}
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div className="space-y-3">
-                {sport.date && (
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="font-semibold text-gray-700">Date:</span>
-                    <span className="text-gray-600">{sport.date}</span>
-                  </div>
-                )}
-
-                {sport.ageGroup && (
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="font-semibold text-gray-700">
-                      Age Group:
-                    </span>
-                    <span className="text-gray-600">{sport.ageGroup}</span>
-                  </div>
-                )}
-
-                {sport.participants && (
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="font-semibold text-gray-700">
-                      Participants:
-                    </span>
-                    <span className="text-gray-600">{sport.participants}</span>
-                  </div>
-                )}
-
-                {sport.teamType && (
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="font-semibold text-gray-700">
-                      Team Type:
-                    </span>
-                    <span className="text-gray-600">{sport.teamType}</span>
-                  </div>
-                )}
-
-                {sport.duration && (
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="font-semibold text-gray-700">
-                      Duration:
-                    </span>
-                    <span className="text-gray-600">{sport.duration}</span>
-                  </div>
-                )}
-
-                {sport.difficulty && (
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="font-semibold text-gray-700">
-                      Difficulty:
-                    </span>
-                    <span className="text-gray-600">{sport.difficulty}</span>
-                  </div>
-                )}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Left Column - Image Carousel */}
+              <div className="lg:sticky lg:top-0">
+                <ModalImageCarousel
+                  images={sport.images}
+                  sportName={sport.sport || sport.event}
+                />
               </div>
 
-              <div className="space-y-3">
-                {sport.location && (
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="font-semibold text-gray-700">
-                      Location:
-                    </span>
-                    <span className="text-gray-600">{sport.location}</span>
-                  </div>
-                )}
+              {/* Right Column - Information */}
+              <div className="space-y-6">
+                {/* Description */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                    Description
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {sport.description || sport.detailedDescription}
+                  </p>
+                </div>
 
-                {sport.equipment && (
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="font-semibold text-gray-700">
-                      Equipment:
-                    </span>
-                    <span className="text-gray-600">{sport.equipment}</span>
-                  </div>
-                )}
+                {/* Basic Information Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {sport.ageGroup && (
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <span className="font-semibold text-gray-700 block text-sm mb-1">
+                        Age Group
+                      </span>
+                      <span className="text-gray-600">{sport.ageGroup}</span>
+                    </div>
+                  )}
 
-                {sport.timing && (
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="font-semibold text-gray-700">Timing:</span>
-                    <span className="text-gray-600">{sport.timing}</span>
-                  </div>
-                )}
+                  {sport.participants && (
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <span className="font-semibold text-gray-700 block text-sm mb-1">
+                        Participants
+                      </span>
+                      <span className="text-gray-600">
+                        {sport.participants}
+                      </span>
+                    </div>
+                  )}
 
+                  {sport.teamType && (
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <span className="font-semibold text-gray-700 block text-sm mb-1">
+                        Team Type
+                      </span>
+                      <span className="text-gray-600">{sport.teamType}</span>
+                    </div>
+                  )}
+
+                  {sport.duration && (
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <span className="font-semibold text-gray-700 block text-sm mb-1">
+                        Duration
+                      </span>
+                      <span className="text-gray-600">{sport.duration}</span>
+                    </div>
+                  )}
+
+                  {sport.difficulty && (
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <span className="font-semibold text-gray-700 block text-sm mb-1">
+                        Difficulty
+                      </span>
+                      <span className="text-gray-600">{sport.difficulty}</span>
+                    </div>
+                  )}
+
+                  {sport.location && (
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <span className="font-semibold text-gray-700 block text-sm mb-1">
+                        Location
+                      </span>
+                      <span className="text-gray-600">{sport.location}</span>
+                    </div>
+                  )}
+
+                  {sport.equipment && (
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <span className="font-semibold text-gray-700 block text-sm mb-1">
+                        Equipment
+                      </span>
+                      <span className="text-gray-600">{sport.equipment}</span>
+                    </div>
+                  )}
+
+                  {sport.timing && (
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <span className="font-semibold text-gray-700 block text-sm mb-1">
+                        Timing
+                      </span>
+                      <span className="text-gray-600">{sport.timing}</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Speakers */}
                 {sport.speakers && (
-                  <div className="border-b pb-2">
-                    <span className="font-semibold text-gray-700 block mb-2">
-                      Speakers:
-                    </span>
-                    <ul className="list-disc list-inside text-gray-600">
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                      Speakers
+                    </h3>
+                    <ul className="list-disc list-inside text-gray-600 space-y-1">
                       {sport.speakers.map((speaker, index) => (
                         <li key={index}>{speaker}</li>
                       ))}
@@ -775,14 +772,29 @@ const DetailModal = ({ sport, isOpen, onClose }) => {
                   </div>
                 )}
 
+                {/* Films */}
                 {sport.films && (
-                  <div className="border-b pb-2">
-                    <span className="font-semibold text-gray-700 block mb-2">
-                      Films:
-                    </span>
-                    <ul className="list-disc list-inside text-gray-600">
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                      Films
+                    </h3>
+                    <ul className="list-disc list-inside text-gray-600 space-y-1">
                       {sport.films.map((film, index) => (
                         <li key={index}>{film}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Rules */}
+                {sport.rules && (
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                      Rules & Guidelines
+                    </h3>
+                    <ul className="list-disc list-inside text-gray-600 space-y-2">
+                      {sport.rules.map((rule, index) => (
+                        <li key={index}>{rule}</li>
                       ))}
                     </ul>
                   </div>
@@ -790,32 +802,8 @@ const DetailModal = ({ sport, isOpen, onClose }) => {
               </div>
             </div>
 
-            {/* Description */}
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                Description
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {sport.description || sport.detailedDescription}
-              </p>
-            </div>
-
-            {/* Rules */}
-            {sport.rules && (
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                  Rules & Guidelines
-                </h3>
-                <ul className="list-disc list-inside text-gray-600 space-y-1">
-                  {sport.rules.map((rule, index) => (
-                    <li key={index}>{rule}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
             {/* Action Buttons */}
-            {/* <div className="flex gap-4 pt-4 border-t">
+            {/* <div className="flex gap-4 pt-6 mt-6 border-t">
               <button
                 onClick={() => {
                   onClose();
@@ -871,12 +859,6 @@ const SportCard = ({ sport }) => {
           </div>
 
           <div className="space-y-2 flex-grow">
-            {sport.date && (
-              <p className="text-gray-600 text-sm">
-                <span className="font-semibold">Date:</span> {sport.date}
-              </p>
-            )}
-
             {sport.ageGroup && (
               <p className="text-gray-600 text-sm">
                 <span className="font-semibold">Age Group:</span>{" "}
