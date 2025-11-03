@@ -5,20 +5,44 @@ import { useState, useEffect } from "react";
 import advelogo from "../../assets/festival/BhonsalaAdventureSporfestival.png";
 import chmeslogo from "../../assets/festival/CHMES-New-Logo_.png";
 import mountaincycling from "../../assets/festival/mountaincycling.jpg";
+import mountaincycling1 from "../../assets/festival/Cycling1.jpeg";
+import mountaincycling2 from "../../assets/festival/Cycling2.jpeg";
 import rangetrek from "../../assets/festival/rangetrek.jpg";
+import rangetrek1 from "../../assets/festival/rangetrek1.JPG";
+import rangetrek2 from "../../assets/festival/rangetrek2.JPG";
 import bouldering from "../../assets/festival/bouldering.jpg";
+import bouldering1 from "../../assets/festival/Bouldering1.jpeg";
+import bouldering2 from "../../assets/festival/Bouldering2.jpeg";
 import navigation from "../../assets/festival/navigation.jpg";
 import ropeobstacle from "../../assets/festival/ropeobstacle.jpg";
+import ropeobstacle1 from "../../assets/festival/ropeobstacle1.jpg";
+import ropeobstacle2 from "../../assets/festival/ropeobstacle2.jpg";
 import rafting from "../../assets/festival/rafting.png";
+import rafting1 from "../../assets/festival/Rafting2.jpg";
+import rafting2 from "../../assets/festival/rafting3.jpg";
 import triventure from "../../assets/festival/triventure.png";
 import parasailing from "../../assets/festival/parasailing.jpg";
+import parasailing1 from "../../assets/festival/Parasailing3.jpg";
+import parasailing2 from "../../assets/festival/FILE00577.jpg";
 import sailing from "../../assets/festival/sailing.jpg";
+import sailing1 from "../../assets/festival/sailing1.jpg";
+import sailing2 from "../../assets/festival/sailing2.jpg";
 import scubadiving from "../../assets/festival/scubadiving.jpg";
+import scubadiving1 from "../../assets/festival/scubadiving1.jpg";
+import scubadiving2 from "../../assets/festival/scubadiving2.jpg";
 import rifleshooting from "../../assets/festival/rifleshooting.jpg";
+import rifleshooting1 from "../../assets/festival/rifleshooting1.jpg";
+import rifleshooting2 from "../../assets/festival/rifleshooting2.JPG";
 import bhartiyyudhkala from "../../assets/festival/bhartiyyudhkala.jpg";
 import bhonsalagymnastic from "../../assets/festival/bhonsalagymnastic.jpg";
+import bhonsalagymnastic1 from "../../assets/festival/bhonsalagymnastic1.jpeg";
+import bhonsalagymnastic2 from "../../assets/festival/bhonsalagymnastic2.jpeg";
 import horseriding from "../../assets/festival/horse-riding.jpeg";
+import horseriding1 from "../../assets/festival/horse-riding1.jpeg";
+import horseriding2 from "../../assets/festival/horse-riding2.jpeg";
 import militaryband from "../../assets/festival/military-band.jpeg";
+import militaryband1 from "../../assets/festival/military-band1.jpg";
+import militaryband2 from "../../assets/festival/military-band2.jpg";
 
 import { usePopup } from "../../context/PopupContext";
 
@@ -33,7 +57,7 @@ const sportsData = {
       category: "Team Competitive",
       participants: "4 members per Team",
       teamType: "Male & Female separate Team",
-      images: [rangetrek, mountaincycling, navigation],
+      images: [rangetrek, rangetrek1, rangetrek2],
       description:
         "A challenging trek through mountain ranges testing endurance and teamwork.",
       rules: [
@@ -54,7 +78,7 @@ const sportsData = {
       category: "Team Competitive",
       participants: "4 members per Team",
       teamType: "Male & Female separate Team",
-      images: [navigation, rangetrek, ropeobstacle],
+      images: [navigation],
       description:
         "Test your navigation skills using maps and compass in unknown terrain.",
       rules: [
@@ -75,7 +99,7 @@ const sportsData = {
       category: "Team Competitive",
       participants: "4 members per Team",
       teamType: "Male & Female separate Team",
-      images: [rafting, triventure, parasailing],
+      images: [rafting, rafting1, rafting2],
       description:
         "White water rafting adventure testing teamwork and river navigation skills.",
       rules: [
@@ -96,7 +120,7 @@ const sportsData = {
       category: "Team Competitive",
       participants: "4 members per Team",
       teamType: "Male & Female separate Team",
-      images: [triventure, rafting, mountaincycling],
+      images: [triventure, rafting2, rangetrek2],
       description:
         "Ultimate adventure challenge combining three different sports in one event.",
       rules: [
@@ -117,7 +141,7 @@ const sportsData = {
       sport: "Mountain Cycling",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Individual Competitive",
-      images: [mountaincycling, rangetrek, navigation],
+      images: [mountaincycling, mountaincycling1, mountaincycling2],
       description:
         "Mountain biking through challenging terrains and steep trails.",
       rules: [
@@ -136,7 +160,7 @@ const sportsData = {
       sport: "Bouldering",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Individual Competitive",
-      images: [bouldering, ropeobstacle, navigation],
+      images: [bouldering, bouldering1, bouldering2],
       description:
         "Rock climbing on small rock formations without ropes or harnesses.",
       rules: [
@@ -155,7 +179,7 @@ const sportsData = {
       sport: "Rope & Obstacle",
       ageGroup: "12 to 17 Yrs. & 18 to 35 Yrs.",
       category: "Individual Competitive",
-      images: [ropeobstacle, bouldering, navigation],
+      images: [ropeobstacle, ropeobstacle1, ropeobstacle2],
       description:
         "Navigate through various rope obstacles testing strength and agility.",
       rules: [
@@ -176,7 +200,7 @@ const sportsData = {
       sport: "Rifle Shooting",
       ageGroup: "15 to 17 Yrs. & 18 Above",
       category: "Non-Competitive",
-      images: [rifleshooting, bhartiyyudhkala, militaryband],
+      images: [rifleshooting, rifleshooting1, rifleshooting2],
       description:
         "Learn and practice rifle shooting under expert supervision.",
       rules: [
@@ -195,7 +219,7 @@ const sportsData = {
       sport: "Parasailing",
       ageGroup: "18 to 35 Yrs.",
       category: "Non-Competitive",
-      images: [parasailing, sailing, rafting],
+      images: [parasailing, parasailing1, parasailing2],
       description:
         "Experience the thrill of flying with parasailing over scenic locations.",
       rules: [
@@ -214,7 +238,7 @@ const sportsData = {
       sport: "Sailing JR",
       ageGroup: "15 to 17 Yrs",
       category: "Non-Competitive",
-      images: [sailing, parasailing, rafting],
+      images: [sailing, sailing1, sailing2],
       description: "Junior sailing experience for young adventure enthusiasts.",
       rules: [
         "Life jackets mandatory",
@@ -232,7 +256,7 @@ const sportsData = {
       sport: "Sailing SR",
       ageGroup: "18 Yrs Above",
       category: "Non-Competitive",
-      images: [sailing, parasailing, scubadiving],
+      images: [sailing, sailing1, sailing2],
       description: "Sailing adventure for adults exploring water sports.",
       rules: [
         "Safety gear required",
@@ -250,7 +274,7 @@ const sportsData = {
       sport: "Scuba Diving",
       ageGroup: "15 to 17 Yrs. & 18 Above",
       category: "Non-Competitive",
-      images: [scubadiving, sailing, parasailing],
+      images: [scubadiving, scubadiving1, scubadiving2],
       description:
         "Explore underwater world with professional scuba diving instructors.",
       rules: [
@@ -270,7 +294,7 @@ const sportsData = {
       sport: "Horse Riding",
       category: "Demonstration",
       description: "Open to All",
-      images: [horseriding, bhartiyyudhkala, militaryband],
+      images: [horseriding, horseriding1, horseriding2],
       detailedDescription:
         "Equestrian show featuring various riding styles and techniques.",
       timing: "2:00 PM - 4:00 PM",
@@ -281,7 +305,7 @@ const sportsData = {
       sport: "Bhartiya Yuddhakala",
       category: "Demonstration",
       description: "Open to All",
-      images: [bhartiyyudhkala, horseriding, militaryband],
+      images: [bhartiyyudhkala],
       detailedDescription: "Traditional Indian martial arts demonstration.",
       timing: "11:00 AM - 1:00 PM",
       location: "Cultural Stage",
@@ -291,7 +315,7 @@ const sportsData = {
       sport: "Military Band",
       category: "Demonstration",
       description: "Open to All",
-      images: [militaryband, bhonsalagymnastic, horseriding],
+      images: [militaryband, militaryband1, militaryband2],
       detailedDescription:
         "Patriotic and ceremonial music performance by military band.",
       timing: "5:00 PM - 6:00 PM",
@@ -302,7 +326,7 @@ const sportsData = {
       sport: "Bhonsala Gymnastic",
       category: "Demonstration",
       description: "Open to All",
-      images: [bhonsalagymnastic, bhartiyyudhkala, militaryband],
+      images: [bhonsalagymnastic, bhonsalagymnastic1, bhonsalagymnastic2],
       detailedDescription:
         "Gymnastics display showcasing agility and physical fitness.",
       timing: "3:00 PM - 4:30 PM",
@@ -338,7 +362,6 @@ const sportsData = {
       images: [
         "https://images.unsplash.com/photo-1489599809505-fb9c1e0b95c3?w=400&h=250&fit=crop",
         "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=250&fit=crop",
-        "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=250&fit=crop",
       ],
       detailedDescription:
         "Screening of award-winning adventure films and documentaries.",
