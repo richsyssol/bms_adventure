@@ -17,9 +17,9 @@ import navigation from "../../assets/festival/navigation.jpg";
 import ropeobstacle from "../../assets/festival/ropeobstacle.jpg";
 import ropeobstacle1 from "../../assets/festival/ropeobstacle1.jpg";
 import ropeobstacle2 from "../../assets/festival/ropeobstacle2.jpg";
-import rafting from "../../assets/festival/rafting.png";
-import rafting1 from "../../assets/festival/Rafting2.jpg";
-import rafting2 from "../../assets/festival/rafting3.jpg";
+import rafting from "../../assets/festival/rafting4.jpeg";
+import rafting1 from "../../assets/festival/rafting5.jpeg";
+import rafting2 from "../../assets/festival/rafting6.jpeg";
 import triventure from "../../assets/festival/triventure.png";
 import parasailing from "../../assets/festival/parasailing.jpg";
 import parasailing1 from "../../assets/festival/Parasailing3.jpg";
@@ -120,7 +120,7 @@ const sportsData = {
       category: "Team Competitive",
       participants: "4 members per Team",
       teamType: "Male & Female separate Team",
-      images: [triventure, rafting2, rangetrek2],
+      images: [rafting2, rangetrek2, mountaincycling],
       description:
         "Ultimate adventure challenge combining three different sports in one event.",
       rules: [
@@ -141,7 +141,7 @@ const sportsData = {
       sport: "Mountain Cycling",
       ageGroup: "18 to 35 Yrs. & 36 to 65 Yrs.",
       category: "Individual Competitive",
-      images: [mountaincycling, mountaincycling1, mountaincycling2],
+      images: [mountaincycling1, mountaincycling2, mountaincycling],
       description:
         "Mountain biking through challenging terrains and steep trails.",
       rules: [
