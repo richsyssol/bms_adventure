@@ -372,7 +372,8 @@ const sportsData = {
   ],
 };
 
-const ImageCarousel = ({ images, sportName }) => {
+// Card Image Carousel - Smaller size for cards
+const CardImageCarousel = ({ images, sportName }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -383,7 +384,7 @@ const ImageCarousel = ({ images, sportName }) => {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 4000); // Slightly longer interval for fade effect
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [images.length, isPaused]);
@@ -410,15 +411,14 @@ const ImageCarousel = ({ images, sportName }) => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="relative md:h-64 h-80 overflow-hidden">
-        {/* Fade transition container */}
+      <div className="relative md:h-68 h-70 overflow-hidden">
         <div className="relative w-full h-full">
           {images.map((image, index) => (
             <img
               key={index}
               src={image}
               alt={`${sportName} - Image ${index + 1}`}
-              className={`absolute top-0 left-0 w-full md:h-64 h-80 object-cover transition-opacity duration-1000 ${
+              className={`absolute top-0 left-0 w-full md:h-68 h-70 object-cover transition-opacity duration-1000 ${
                 index === currentIndex ? "opacity-100" : "opacity-0"
               }`}
               onError={(e) => {
@@ -438,10 +438,10 @@ const ImageCarousel = ({ images, sportName }) => {
               e.stopPropagation();
               prevImage();
             }}
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
           >
             <svg
-              className="w-4 h-4"
+              className="w-3 h-3"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -459,10 +459,10 @@ const ImageCarousel = ({ images, sportName }) => {
               e.stopPropagation();
               nextImage();
             }}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
           >
             <svg
-              className="w-4 h-4"
+              className="w-3 h-3"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -480,7 +480,136 @@ const ImageCarousel = ({ images, sportName }) => {
 
       {/* Dots Indicator */}
       {images.length > 1 && (
-        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1 z-10">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={(e) => {
+                e.stopPropagation();
+                goToImage(index);
+              }}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentIndex
+                  ? "bg-white scale-125"
+                  : "bg-white bg-opacity-50 hover:bg-opacity-75"
+              }`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Modal Image Carousel - Larger size for modal/popup
+const ModalImageCarousel = ({ images, sportName }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (images.length <= 1 || isPaused) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [images.length, isPaused]);
+
+  const nextImage = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToImage = (index) => {
+    setCurrentIndex(index);
+  };
+
+  return (
+    <div
+      className="relative overflow-hidden rounded-lg group"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div className="relative md:h-200 h-120 overflow-hidden">
+        <div className="relative w-full h-full">
+          {images.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`${sportName} - Image ${index + 1}`}
+              className={`absolute top-0 left-0 w-full md:h-200 h-120 object-cover transition-opacity duration-1000 ${
+                index === currentIndex ? "opacity-100" : "opacity-0"
+              }`}
+              onError={(e) => {
+                e.target.src =
+                  "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&h=500&fit=crop";
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Navigation Arrows */}
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              prevImage();
+            }}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-opacity-70"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              nextImage();
+            }}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-opacity-70"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </>
+      )}
+
+      {/* Dots Indicator */}
+      {images.length > 1 && (
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
           {images.map((_, index) => (
             <button
               key={index}
@@ -497,6 +626,13 @@ const ImageCarousel = ({ images, sportName }) => {
           ))}
         </div>
       )}
+
+      {/* Image Counter */}
+      {images.length > 1 && (
+        <div className="absolute top-4 right-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm z-10">
+          {currentIndex + 1} / {images.length}
+        </div>
+      )}
     </div>
   );
 };
@@ -507,7 +643,7 @@ const DetailModal = ({ sport, isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white rounded-lg max-w-6xl w-full max-h-[95vh] overflow-y-auto">
         <div className="relative">
           {/* Header */}
           <div className="flex justify-between items-center p-6 border-b">
@@ -536,9 +672,9 @@ const DetailModal = ({ sport, isOpen, onClose }) => {
 
           {/* Content */}
           <div className="p-6">
-            {/* Image Carousel */}
+            {/* Image Carousel - Using larger modal carousel */}
             <div className="mb-6">
-              <ImageCarousel
+              <ModalImageCarousel
                 images={sport.images}
                 sportName={sport.sport || sport.event}
               />
@@ -704,7 +840,7 @@ const DetailModal = ({ sport, isOpen, onClose }) => {
   );
 };
 
-// SportCard Component with Image Carousel
+// SportCard Component with Card Image Carousel
 const SportCard = ({ sport }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { openPopup } = usePopup();
@@ -720,8 +856,8 @@ const SportCard = ({ sport }) => {
   return (
     <>
       <div className="bg-white rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer flex flex-col h-full border border-gray-200">
-        {/* Image Carousel Section */}
-        <ImageCarousel
+        {/* Image Carousel Section - Using smaller card carousel */}
+        <CardImageCarousel
           images={sport.images}
           sportName={sport.sport || sport.event}
         />
